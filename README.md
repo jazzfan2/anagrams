@@ -6,10 +6,11 @@ anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a
 given language that form an anagram with the (combination of) word(s) given as argument(s).
 Each matching combination of words appears in one distinct sequence only.
 
-anagrams.py offers options specifying:
+anagrams.py offers options to set:
 - language: only one at the time, default language is Dutch;
 - minimum length of words in matching combination;
-- number of words in matching combination;
+- maximum number of words in matching combination;
+- a word that must be part of the matching combination;
 - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
@@ -44,8 +45,9 @@ If wished and as per system configuration, above paths and langauge default may 
 	-h            Help (this output)
 	-i            Italian
 	-s            Spanish
-	-l MINLENGTH  Show only results with at least word MINLENGTH
-	-q QTY        Show only results with QTY words 
+	-l MINLENGTH  Show only results with words of at least MINLENGTH
+	-q MAXQTY     Show only results with maximally MAXQTY words 
+	-I WORD       Show only results containing WORD
 	-x CHARS      Exclude words with any of these CHARS 
 
 Options can be combined but only one (1) language can be set at the time.

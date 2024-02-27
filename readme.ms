@@ -17,10 +17,11 @@ with the (combination of) word(s) given as argument(s).
 Each matching combination of words appears in one distinct sequence
 only.
 .PP
-anagrams.py offers options specifying: - language: only one at the time,
+anagrams.py offers options to set: - language: only one at the time,
 default language is Dutch; - minimum length of words in matching
-combination; - number of words in matching combination; - characters to
-be excluded from match (in order to avoid dots, apostrophs etc.).
+combination; - maximum number of words in matching combination; - a word
+that must be part of the matching combination; - characters to be
+excluded from match (in order to avoid dots, apostrophs etc.).
 .PP
 The results are sent to standard output and can be piped to e.g.\ `less'
 or other utilities and applications.
@@ -76,8 +77,9 @@ Options:
 -h            Help (this output)
 -i            Italian
 -s            Spanish
--l MINLENGTH  Show only results with at least word MINLENGTH
--q QTY        Show only results with QTY words 
+-l MINLENGTH  Show only results with words of at least MINLENGTH
+-q MAXQTY     Show only results with maximally MAXQTY words 
+-I WORD       Show only results containing WORD
 -x CHARS      Exclude words with any of these CHARS 
 \f[]
 .fi

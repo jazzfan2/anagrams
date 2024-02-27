@@ -6,10 +6,11 @@
 # given language that form an anagram of the (combination of) word(s) given 
 # as argument(s).
 # Each matching combination of words appears in one distinct sequence only.
-# With options to specify:
+# With options in order to set:
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
-# - number of words in matching combination;
+# - maximum number of words in matching combination;
+# - a word that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
@@ -96,18 +97,20 @@ def combine(signature, word_args, signature_list, result):
         residue = residue.replace(i,"",1)
     if residue == "":
         result = result + [signature]
-        if word_qty == -1 or len(result) == word_qty:
-            read_words(result, 0, "")
+        if maximum_qty == -1 or len(result) <= maximum_qty:
+            read_words(result, 0, "") # Get all words belonging to these signature combinations
         return
-    signature_list_new = []
+    signature_list_reduced = []
     for s in signature_list:
         if compare(s, residue) != residue:
-            signature_list_new.append(s)
-    for s in signature_list_new:
-        if len(result) == word_qty:  # Stop if word_qty is reached and residue not yet empty
+            signature_list_reduced.append(s)
+    for s in signature_list_reduced:
+        if incl_signature != "" and incl_signature not in signature_list_reduced:
+            return                     # Stop if "Include"-signature is not in the list
+        if len(result) == maximum_qty: # Stop if maximum_qty is reached and residue not yet empty
             return
-        if len(s) >= len(signature): # To avoid multiple word sequences for one word combination
-            combine(s, residue, signature_list_new, result + [signature])
+        if len(s) >= len(signature):   # Avoid multiple word sequences for one word combination
+            combine(s, residue, signature_list_reduced, result + [signature])
 
 
 def read_words(signature_list, i, anagramresult):
@@ -117,7 +120,8 @@ def read_words(signature_list, i, anagramresult):
         if i < len(signature_list) - 1:
             read_words(signature_list, i + 1, new_anagramresult)
         else:
-            print(new_anagramresult)
+            if incl_word == "" or incl_word + " " in new_anagramresult:
+                print(new_anagramresult)
 
 
 os.system('clear')
@@ -143,18 +147,21 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t-i	Italian
 \t-s	Spanish
 \t-l MINLENGTH
-\t	Show only results with at least word MINLENGTH
-\t-q QTY
-\t	Show only results with QTY words 
+\t	Show only results with words of at least MINLENGTH
+\t-q MAXQTY
+\t	Show only results with maximally MAXQTY words 
+\t-I WORD
+\t	Show only results containing WORD
 \t-x CHARS
 \t	Exclude words with any of these CHARS 
 """
 
 dictionarylist = make_list(dictionary_nl, "d")  # Dutch is default language
-word_args = ""     # Initializations of word_args
-word_qty = -1      # -1 means no filtering to word quantity of in anagram matches
-minimum_length = 2 # To avoid single letters to appear in result, unless chosen by option -l
-excl_chars = "_"   # Default: underscore does not appear so can always be excluded
+word_args      = ""  # Initializations of word_args
+maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
+minimum_length = 2   # To avoid single letters to appear in result, unless so chosen by option -l
+incl_word      = ""
+excl_chars     = "_" # Default: underscore does not appear so can always be excluded
 
 """Regular expressions:"""
 intpun = re.compile('[\'\" .&-]')
@@ -169,7 +176,7 @@ slashtag = re.compile('\/[^/]*')
 
 '""Select option(s):""'
 try:
-    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:x:')
+    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:I:x:')
 except:
     print(usage)
     sys.exit()
@@ -195,7 +202,9 @@ for opt, arg in options:
     elif opt in ('-l'):
         minimum_length = int(arg)
     elif opt in ('-q'):
-        word_qty = int(arg)
+        maximum_qty = int(arg)
+    elif opt in ('-I'):
+        incl_word = arg
     elif opt in ('-x'):
         excl_chars = arg
 
@@ -209,6 +218,13 @@ word_args = ""
 for word in non_option_args:
     word_args = word_args + word
 word_args = normalize(word_args)
+
+# Stop if "Include"-word is not in the language dictionary:
+if incl_word != "" and incl_word not in dictionarylist:
+    sys.exit()    
+
+# Convert the "Include"-word to a unique sorted "Include"-signature:
+incl_signature = normalize(incl_word)
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
@@ -229,6 +245,6 @@ for signature in anagrams:
     if compare(signature, word_args) != word_args:
         signaturelist.append(signature)
 
-# Find the anagram combinations of these signatures with the word_args:
+# Find the combinations of these signatures that form anagrams of the word_args:
 for signature in signaturelist:
     combine(signature, word_args, signaturelist, [])
