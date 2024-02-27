@@ -133,7 +133,7 @@ dictionary_it = "/usr/share/dict/italian"
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
-anagrams2.sh [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
+anagrams.sh [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t-a	American-English
 \t-b	British-English
 \t-d	Dutch

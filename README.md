@@ -1,5 +1,5 @@
-# Name: anagram
-anagrams - a Python program in Python3 that finds all word-*COMBINATIONS* in a given language that form an anagram with the (combination of) word(s) given as argument(s).
+# Name: anagrams.py
+anagrams.py - a Python program in Python3 that finds all word-*COMBINATIONS* in a given language that form an anagram with the (combination of) word(s) given as argument(s).
 
 # Description:
 anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a 
@@ -10,8 +10,6 @@ anagrams.py offers options to specify:
 - minimum length of words in matching combination;
 - number of words in matching combination;
 - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
-
-Disclaimer: word combinations presented by this program as anagram solutions can't be expected to be grammatically correct nor to make sense in general!
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
 
@@ -30,27 +28,24 @@ If no language option is given, Dutch is the default language.
 
 If wished and as per system configuration, above paths and langauge default may be changed or removed and references to other word lists may be added, by modifying the program code accordingly.
 
-# How to use anagram
+# How to use anagrams
 
 ## Usage:
 
 	anagrams.sh [-abdfghislqx] WORD(1) [ ... WORD(n)]
 
 ## Options:
-	-a          American-English
-	-b          British-English
-	-d          Dutch
-	-f          French
-	-g          German
-	-h          Help (this output)
-	-i          Italian
-	-s          Spanish
-	-l MINLENGTH
-                 Show only results with at least word MINLENGTH
-	-q QTY
-                 Show only results with QTY words 
-	-x CHARS
-                  Exclude words with any of these CHARS 
+	-a            American-English
+	-b            British-English
+	-d            Dutch
+	-f            French
+	-g            German
+	-h            Help (this output)
+	-i            Italian
+	-s            Spanish
+	-l MINLENGTH  Show only results with at least word MINLENGTH
+	-q QTY        Show only results with QTY words 
+	-x CHARS      Exclude words with any of these CHARS 
 
 Options can be combined but only one (1) language can be set at the time.
 
@@ -58,11 +53,11 @@ One of more [WORD] arguments must be given, to which the program will present al
 
 For example, the command:
 
-	./anagrams.py -abdfgs emirates
+	./anagrams.py -a -l7 github repositories
 
 gives following results:
-
-
+	besought priorities 
+	priorities besought
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).
