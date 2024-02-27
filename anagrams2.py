@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Name  : anagrams.py
+# Name  : anagrams2.py
 # Author: R.J.Toscani
 # Date  : 26-02-2024
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
@@ -97,15 +97,13 @@ def combine(signature, word_args, signaturelist, result):
         residue = residue.replace(i,"",1)
     if residue == "":
         result = result + [signature]
-        if maximum_qty == -1 or len(result) <= maximum_qty:
-            read_words(result, 0, "") # Get all words belonging to these signature combinations
+        if maximum_qty < 0 or len(result) <= maximum_qty:
+            read_words(result, 0, "")  # Get all words belonging to these signature combinations
         return
     signaturelist_reduced = []
     for s in signaturelist:
-        if compare(s, residue) != residue:    # Test if letters in s are in residue as well
+        if compare(s, residue) != residue:  # Test if letters in s are in residue as well
             signaturelist_reduced.append(s)
-    if incl_signa != "" and incl_signa not in result + [signature] + signaturelist_reduced:
-        return                         # Stop if "Include"-signature not in remaining list
     for s in signaturelist_reduced:
         if len(result) == maximum_qty: # Stop if maximum_qty is reached and residue not yet empty
             return
@@ -121,7 +119,7 @@ def read_words(signaturelist, i, anagramresult):
             read_words(signaturelist, i + 1, new_anagramresult)
         else:
             if incl_word == "" or incl_word + " " in new_anagramresult:
-                print(new_anagramresult)
+                print(new_anagramresult, incl_word)  # "Include"-word only printed if not empty
 
 
 os.system('clear')
@@ -223,8 +221,20 @@ word_args = normalize(word_args)
 if incl_word != "" and incl_word not in dictionarylist:
     sys.exit()    
 
-# Convert the "Include"-word to a unique sorted "Include"-signature:
-incl_signa = normalize(incl_word)
+# Subtract "Include"-word from word_args, and extract it from the procedure in advance:
+word_args_reduced = ""
+for c in word_args:
+    if c not in incl_word:
+        word_args_reduced += c
+word_args = word_args_reduced  # word_args is reduced by "Include"-word characters
+
+print(word_args)
+
+# error if "Include"-word characters are not subset of word_args
+
+# So if "Include"-word isn't empty it's the first result, and maximum_qty value is decremented:
+if incl_word != "":
+    maximum_qty -= 1
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
