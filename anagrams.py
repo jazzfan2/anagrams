@@ -4,14 +4,14 @@
 # Date  : 26-02-2024
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram of the (combination of) word(s) given 
-# as argument(s).
-# Each matching combination of words appears in one distinct sequence only.
-# With options in order to set:
+# as argument(s). With options in order to set:
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
 # - a word that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
+#
+# Matching combinations of words appear in only one distinct sequence.
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
@@ -90,7 +90,7 @@ def compare(string, reference):
     return residue            # Else return reference residue, to be matched to later strings
         
 
-def combine(signature, word_args, signature_list, result):
+def combine(signature, word_args, signaturelist, result):
     """Generate all signature combinations that match as an anagram for the given word_args:"""
     residue = word_args
     for i in signature:
@@ -100,25 +100,25 @@ def combine(signature, word_args, signature_list, result):
         if maximum_qty == -1 or len(result) <= maximum_qty:
             read_words(result, 0, "") # Get all words belonging to these signature combinations
         return
-    signature_list_reduced = []
-    for s in signature_list:
-        if compare(s, residue) != residue:
-            signature_list_reduced.append(s)
-    for s in signature_list_reduced:
-        if incl_signature != "" and incl_signature not in signature_list_reduced:
-            return                     # Stop if "Include"-signature is not in the list
+    signaturelist_reduced = []
+    for s in signaturelist:
+        if compare(s, residue) != residue:    # Test if letters in s are in residue as well
+            signaturelist_reduced.append(s)
+    if incl_signa != "" and incl_signa not in result + [signature] + signaturelist_reduced:
+        return                         # Stop if "Include"-signature not in remaining list
+    for s in signaturelist_reduced:
         if len(result) == maximum_qty: # Stop if maximum_qty is reached and residue not yet empty
             return
         if len(s) >= len(signature):   # Avoid multiple word sequences for one word combination
-            combine(s, residue, signature_list_reduced, result + [signature])
+            combine(s, residue, signaturelist_reduced, result + [signature])
 
 
-def read_words(signature_list, i, anagramresult):
+def read_words(signaturelist, i, anagramresult):
     """Print all word combinations for the given signature combinations:"""
-    for word in anagrams[signature_list[i]]:
+    for word in anagrams[signaturelist[i]]:
         new_anagramresult = anagramresult + word + " "
-        if i < len(signature_list) - 1:
-            read_words(signature_list, i + 1, new_anagramresult)
+        if i < len(signaturelist) - 1:
+            read_words(signaturelist, i + 1, new_anagramresult)
         else:
             if incl_word == "" or incl_word + " " in new_anagramresult:
                 print(new_anagramresult)
@@ -224,7 +224,7 @@ if incl_word != "" and incl_word not in dictionarylist:
     sys.exit()    
 
 # Convert the "Include"-word to a unique sorted "Include"-signature:
-incl_signature = normalize(incl_word)
+incl_signa = normalize(incl_word)
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
@@ -246,5 +246,7 @@ for signature in anagrams:
         signaturelist.append(signature)
 
 # Find the combinations of these signatures that form anagrams of the word_args:
-for signature in signaturelist:
+while signaturelist:
+    signature = signaturelist[0] 
+    signaturelist = [ x for x in signaturelist if x != signature]
     combine(signature, word_args, signaturelist, [])
