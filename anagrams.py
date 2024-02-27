@@ -245,7 +245,7 @@ for signature in anagrams:
     if compare(signature, word_args) != word_args:
         signaturelist.append(signature)
 
-# Find the combinations of these signatures that form anagrams of the word_args:
+# Find the distinct combinations of these signatures that form anagrams of the word_args:
 while signaturelist:
     signature = signaturelist[0] 
     signaturelist = [ x for x in signaturelist if x != signature]
