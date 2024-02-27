@@ -104,7 +104,7 @@ def combine(signature, word_args, signature_list, result):
     for s in signature_list_new:
         if len(result) == word_qty:  # Stop if word_qty is reached and residue not yet empty
             return
-        if len(s) >= len(signature): # To avoid multiple word sequence for one word combination
+        if len(s) >= len(signature): # To avoid multiple word sequences for one word combination
             combine(s, residue, signature_list_new, result + [signature])
 
 
