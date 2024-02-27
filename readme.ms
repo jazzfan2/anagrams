@@ -92,7 +92,7 @@ For example, the command:
 .IP
 .nf
 \f[C]
-./anagrams.py -a -l7 github repositories
+./anagrams.py -a -l6 github actions
 \f[]
 .fi
 .LP
@@ -100,7 +100,27 @@ gives following result:
 .IP
 .nf
 \f[C]
-besought priorities 
+Chiba\[aq]s touting 
+GitHub action\[aq]s 
+GitHub actions 
+GitHub cation\[aq]s 
+GitHub cations 
+action GitHub\[aq]s 
+cation GitHub\[aq]s 
+aught\[aq]s bitcoin 
+aughts bitcoin 
+bight\[aq]s auction 
+bight\[aq]s caution 
+bights auction 
+bights caution 
+bough\[aq]s Titanic 
+bough\[aq]s titanic 
+boughs Titanic 
+boughs titanic 
+chino\[aq]s Bugatti 
+chinos Bugatti 
+coitus bathing 
+touch\[aq]s baiting 
 \f[]
 .fi
 .SH 1

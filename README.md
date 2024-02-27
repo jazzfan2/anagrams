@@ -54,11 +54,31 @@ One of more [WORD] arguments must be given, to which the program will present al
 
 For example, the command:
 
-	./anagrams.py -a -l7 github repositories
+	./anagrams.py -a -l6 github actions
 
 gives following result:
 
-	besought priorities 
+	Chiba's touting 
+	GitHub action's 
+	GitHub actions 
+	GitHub cation's 
+	GitHub cations 
+	action GitHub's 
+	cation GitHub's 
+	aught's bitcoin 
+	aughts bitcoin 
+	bight's auction 
+	bight's caution 
+	bights auction 
+	bights caution 
+	bough's Titanic 
+	bough's titanic 
+	boughs Titanic 
+	boughs titanic 
+	chino's Bugatti 
+	chinos Bugatti 
+	coitus bathing 
+	touch's baiting 
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).
