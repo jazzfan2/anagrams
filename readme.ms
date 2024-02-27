@@ -16,7 +16,8 @@ word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram
 with the (combination of) word(s) given as argument(s).
 Each matching combination of words appears in one distinct sequence
 only.
-anagrams.py offers options to specify: - language: only one at the time,
+.PP
+anagrams.py offers options specifying: - language: only one at the time,
 default language is Dutch; - minimum length of words in matching
 combination; - number of words in matching combination; - characters to
 be excluded from match (in order to avoid dots, apostrophs etc.).
@@ -57,7 +58,7 @@ Usage:
 .IP
 .nf
 \f[C]
-anagrams.sh [-abdfghislqx] WORD(1) [ ... WORD(n)]
+anagrams.spy [-abdfghislqx] WORD(1) [ ... WORD(n)]
 \f[]
 .fi
 .SH 2
@@ -85,7 +86,7 @@ Options can be combined but only one (1) language can be set at the
 time.
 .PP
 One of more [WORD] arguments must be given, to which the program will
-present all matching combinations of words given the option settings.
+present all matching combinations of words, given the option settings.
 .PP
 For example, the command:
 .IP

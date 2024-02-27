@@ -2,7 +2,7 @@
 # Name  : anagrams.py
 # Author: R.J.Toscani
 # Date  : 26-02-2024
-# Description: Anagrams program in Python3 that finds all word-*COMBINATIONS* in a 
+# Description: Python3 program that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram with the (combination of) word(s) given 
 # as argument(s).
 # Each matching combination of words appears in one distinct sequence only.
@@ -133,7 +133,7 @@ dictionary_it = "/usr/share/dict/italian"
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
-anagrams.sh [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
+anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t-a	American-English
 \t-b	British-English
 \t-d	Dutch
