@@ -101,13 +101,11 @@ def combine(signature, word_args, signature_list, result):
     for s in signature_list:
         if compare(s, residue) != residue:
             signature_list_new.append(s)
-    prev = ""
     for s in signature_list_new:
-        if len(result) == word_qty: # Stop if word_qty is reached and residue not yet empty
+        if len(result) == word_qty:  # Stop if word_qty is reached and residue not yet empty
             return
-        if len(s) >= len(prev):     # To avoid multiple word sequence for one word combination
+        if len(s) >= len(signature): # To avoid multiple word sequence for one word combination
             combine(s, residue, signature_list_new, result + [signature])
-        prev = s     
 
 
 def read_words(signature_list, i, anagramresult):

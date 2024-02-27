@@ -56,10 +56,9 @@ For example, the command:
 
 	./anagrams.py -a -l7 github repositories
 
-gives following results:
+gives following result:
 
 	besought priorities 
-	priorities besought
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).

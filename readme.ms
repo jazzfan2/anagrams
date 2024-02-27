@@ -96,12 +96,11 @@ For example, the command:
 \f[]
 .fi
 .LP
-gives following results:
+gives following result:
 .IP
 .nf
 \f[C]
 besought priorities 
-priorities besought
 \f[]
 .fi
 .SH 1
