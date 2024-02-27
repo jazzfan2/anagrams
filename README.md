@@ -28,7 +28,7 @@ If no language option is given, Dutch is the default language.
 
 If wished and as per system configuration, above paths and langauge default may be changed or removed and references to other word lists may be added, by modifying the program code accordingly.
 
-# How to use anagrams
+# How to use anagrams.py
 
 ## Usage:
 
@@ -56,6 +56,7 @@ For example, the command:
 	./anagrams.py -a -l7 github repositories
 
 gives following results:
+
 	besought priorities 
 	priorities besought
 

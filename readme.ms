@@ -47,9 +47,9 @@ If wished and as per system configuration, above paths and langauge
 default may be changed or removed and references to other word lists may
 be added, by modifying the program code accordingly.
 .SH 1
-How to use anagrams
-.pdfhref O 1 "How to use anagrams"
-.pdfhref M "how-to-use-anagrams"
+How to use anagrams.py
+.pdfhref O 1 "How to use anagrams.py"
+.pdfhref M "how-to-use-anagrams.py"
 .SH 2
 Usage:
 .pdfhref O 2 "Usage:"
@@ -95,7 +95,14 @@ For example, the command:
 \f[]
 .fi
 .LP
-gives following results: besought priorities priorities besought
+gives following results:
+.IP
+.nf
+\f[C]
+besought priorities 
+priorities besought
+\f[]
+.fi
 .SH 1
 Author:
 .pdfhref O 1 "Author:"
