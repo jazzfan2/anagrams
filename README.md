@@ -33,7 +33,7 @@ If wished and as per system configuration, above paths and langauge default may 
 
 ## Usage:
 
-	anagrams.spy [-abdfghislqx] WORD(1) [ ... WORD(n)]
+	anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]
 
 ## Options:
 	-a            American-English

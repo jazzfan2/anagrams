@@ -58,7 +58,7 @@ Usage:
 .IP
 .nf
 \f[C]
-anagrams.spy [-abdfghislqx] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]
 \f[]
 .fi
 .SH 2
