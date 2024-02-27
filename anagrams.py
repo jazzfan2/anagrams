@@ -15,6 +15,8 @@
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
 #
+# Use pypy3 for enhanced speed.
+#
 ######################################################################################
 #
 # Copyright (C) 2024 Rob Toscani <rob_toscani@yahoo.com>
