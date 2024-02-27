@@ -2,7 +2,7 @@
 # Name  : anagrams.py
 # Author: R.J.Toscani
 # Date  : 26-02-2024
-# Description: Anagrams program in Python3 that finds all word-combinations in a 
+# Description: Anagrams program in Python3 that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram with the (combination of) word(s) given 
 # as argument(s).
 # Each matching combination of words appears in one distinct sequence only.
