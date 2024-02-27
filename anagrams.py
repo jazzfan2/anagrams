@@ -3,7 +3,7 @@
 # Author: R.J.Toscani
 # Date  : 26-02-2024
 # Description: Anagrams program in Python3 that finds all word-combinations in a 
-# given language that form an anagram with the (combinations of) word(s) given 
+# given language that form an anagram with the (combination of) word(s) given 
 # as argument(s).
 # Each matching combination of words appears in one distinct sequence only.
 # With options to specify:
@@ -19,12 +19,12 @@
 #
 # Copyright (C) 2024 Rob Toscani <rob_toscani@yahoo.com>
 #
-# anagrams.sh is free software: you can redistribute it and/or modify
+# anagrams.py is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# anagrams.sh is distributed in the hope that it will be useful,
+# anagrams.py is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
