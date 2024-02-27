@@ -3,7 +3,7 @@
 # Author: R.J.Toscani
 # Date  : 26-02-2024
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
-# given language that form an anagram with the (combination of) word(s) given 
+# given language that form an anagram of the (combination of) word(s) given 
 # as argument(s).
 # Each matching combination of words appears in one distinct sequence only.
 # With options to specify:

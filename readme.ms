@@ -4,8 +4,8 @@ Name: anagrams.py
 .pdfhref M "name-anagrams.py"
 .LP
 anagrams.py - a Python program in Python3 that finds all
-word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram
-with the (combination of) word(s) given as argument(s).
+word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram of
+the (combination of) word(s) given as argument(s).
 .SH 1
 Description:
 .pdfhref O 1 "Description:"
