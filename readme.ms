@@ -13,7 +13,8 @@ Description:
 .LP
 anagrams.py is a Python3 program that finds all
 word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram of
-the (combination of) word(s) given as argument(s).
+the (combination of) word(s) - whether or not existing(!) - given as
+argument(s).
 Each matching combination of words appears in one distinct sequence
 only.
 .PP
