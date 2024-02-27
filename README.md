@@ -1,5 +1,5 @@
 # Name: anagrams.py
-anagrams.py - a Python program in Python3 that finds all word-*COMBINATIONS* in a given language that form an anagram of the (combination of) word(s) given as argument(s).
+anagrams.py - a program that finds all word-*COMBINATIONS* in a given language that form an anagram of the (combination of) word(s) given as argument(s).
 
 # Description:
 anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a 
