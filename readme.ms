@@ -12,8 +12,8 @@ Description:
 .pdfhref M "description"
 .LP
 anagrams.py is a Python3 program that finds all
-word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram
-with the (combination of) word(s) given as argument(s).
+word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram of
+the (combination of) word(s) given as argument(s).
 Each matching combination of words appears in one distinct sequence
 only.
 .PP
