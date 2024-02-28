@@ -259,7 +259,5 @@ for signature in anagrams:
         signaturelist.append(signature)
 
 # Find the distinct combinations of these signatures that form anagrams of the word_args:
-while signaturelist:
-    signature = signaturelist[0] 
-    signaturelist.remove(signature)
+for signature in signaturelist:
     combine(signature, word_args, signaturelist, [])
