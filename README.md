@@ -46,7 +46,7 @@ If wished and as per system configuration, above paths and langauge default may 
 	-i            Italian
 	-s            Spanish
 	-l MINLENGTH  Results with words of at least MINLENGTH only
-	-q MAXQTY     Results with maximally MAXQTY words  only
+	-q MAXQTY     Results with maximally MAXQTY words only
 	-I WORD       Results with WORD only (length not restricted by option -l)
 	-x CHARS      Exclude words with any of these CHARS 
 
