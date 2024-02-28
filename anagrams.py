@@ -11,7 +11,7 @@
 # - a word that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 #
-# Matching combinations of words appear mostly in one distinct sequence.
+# Matching combinations of words generally appear in one distinct sequence only.
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
@@ -97,15 +97,13 @@ def combine(signature, word_args, signaturelist, result):
         residue = residue.replace(i,"",1)
     if residue == "":
         result = result + [signature]
-        if maximum_qty == -1 or len(result) <= maximum_qty:
-            read_words(result, 0, "") # Get all words belonging to these signature combinations
+        if maximum_qty < 0 or len(result) <= maximum_qty:
+            read_words(result, 0, "")  # Get all words belonging to these signature combinations
         return
     signaturelist_reduced = []
     for s in signaturelist:
-        if compare(s, residue) != residue:    # Test if letters in s are in residue as well
+        if compare(s, residue) != residue:  # Test if letters in s are in residue as well
             signaturelist_reduced.append(s)
-    if incl_signa != "" and incl_signa not in result + [signature] + signaturelist_reduced:
-        return                         # Stop if "Include"-signature not in remaining list
     for s in signaturelist_reduced:
         if len(result) == maximum_qty: # Stop if maximum_qty is reached and residue not yet empty
             return
@@ -120,8 +118,7 @@ def read_words(signaturelist, i, anagramresult):
         if i < len(signaturelist) - 1:
             read_words(signaturelist, i + 1, new_anagramresult)
         else:
-            if incl_word == "" or incl_word + " " in new_anagramresult:
-                print(new_anagramresult)
+            print(new_anagramresult + incl_word)  # 'include'-word only printed if not empty
 
 
 os.system('clear')
@@ -147,11 +144,11 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t-i	Italian
 \t-s	Spanish
 \t-l MINLENGTH
-\t	Show only results with words of at least MINLENGTH
+\t	Results with words of at least MINLENGTH only
 \t-q MAXQTY
-\t	Show only results with maximally MAXQTY words 
+\t	Results with maximally MAXQTY words only
 \t-I WORD
-\t	Show only results containing WORD
+\t	Results with WORD only (length not restricted by option -l)
 \t-x CHARS
 \t	Exclude words with any of these CHARS 
 """
@@ -219,12 +216,28 @@ for word in non_option_args:
     word_args = word_args + word
 word_args = normalize(word_args)
 
-# Stop if "Include"-word is not in the language dictionary:
+# Stop if 'include'-word is not in the language dictionary:
 if incl_word != "" and incl_word not in dictionarylist:
-    sys.exit()    
+    sys.exit()
 
-# Convert the "Include"-word to a unique sorted "Include"-signature:
+# Convert the 'include'-word to a unique sorted "Include"-signature:
 incl_signa = normalize(incl_word)
+
+# Subtract 'include'-signature from word_args signature:
+for char in incl_signa:
+    if char in word_args:
+        word_args = word_args.replace(char, "", 1)
+    else:          # Interrupt if 'include'-word characters are not a subset of word_args
+        sys.exit()
+
+# The 'include'-word is part of the result in advance so maximum_qty value is decremented:
+if (incl_word):
+    maximum_qty -= 1
+
+# Terinate program if 'include'-signature equals word_args signature, so latter is empty:
+if word_args == "":
+    print(incl_word)
+    sys.exit()
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
