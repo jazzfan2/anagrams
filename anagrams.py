@@ -234,7 +234,7 @@ for char in incl_signa:
 if (incl_word):
     maximum_qty -= 1
 
-# Terinate program if 'include'-signature equals word_args signature, so latter is empty:
+# Terminate program if 'include'-signature equals word_args signature, so latter is empty:
 if word_args == "":
     print(incl_word)
     sys.exit()
