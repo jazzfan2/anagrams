@@ -81,7 +81,7 @@ def contains(string, characters):
 
 def is_subset(string1, string2):
     """Check if all characters in string1 are a subset of the characters in string2:"""
-    for i in normalize(string1):
+    for i in string1:
         if i in string2:                      # If character in string1 is in string2 too:
             string2 = string2.replace(i,"",1) # Remove matching letter from string2
         else:
