@@ -98,16 +98,18 @@ def combine(signature, word_args, signaturelist, result):
     if residue == "":
         result = result + [signature]
         if maximum_qty < 0 or len(result) <= maximum_qty:
-            read_words(result, 0, "")  # Get all words belonging to these signature combinations
+            read_words(result, 0, "")      # Get all words belonging to these sign. combinations
         return
+    if len(residue) < minimum_length or len(result) == maximum_qty:
+        return                             # No solutions will be found in these two cases
     signaturelist_reduced = []
     for s in signaturelist:
-        if compare(s, residue) != residue:  # Test if letters in s are in residue as well
+        if len(result) == maximum_qty - 1 and s != residue: # Final signature must equal residue
+            continue
+        if compare(s, residue) != residue: # Test if letters in s are in residue as well
             signaturelist_reduced.append(s)
     for s in signaturelist_reduced:
-        if len(result) == maximum_qty: # Stop if maximum_qty is reached and residue not yet empty
-            return
-        if len(s) >= len(signature):   # Avoid multiple word sequences for one word combination
+        if len(s) >= len(signature):      # Avoid multiple word sequences for 1 word combination
             combine(s, residue, signaturelist_reduced, result + [signature])
 
 
@@ -159,6 +161,7 @@ maximum_qty    = -1  # -1 means that anagram matches are not filtered to word qu
 minimum_length = 2   # To avoid single letters to appear in result, unless so chosen by option -l
 incl_word      = ""
 excl_chars     = "_" # Default: underscore does not appear so can always be excluded
+
 
 """Regular expressions:"""
 intpun = re.compile('[\'\" .&-]')
