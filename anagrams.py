@@ -79,12 +79,11 @@ def normalize(string):
     return ''.join(sorted(string.lower()))
 
 
-def is_subset(string, reference):
-    """Check if all characters in string are a subset of the characters in reference:"""
-    residue = reference
-    for i in normalize(string):
-        if i in residue:                      # If string letter is in reference as well:
-            residue = residue.replace(i,"",1) # Remove matching letter from reference
+def is_subset(string1, string2):
+    """Check if all characters in string1 are a subset of the characters in string2:"""
+    for i in normalize(string1):
+        if i in string2:                      # If character in string1 is in string2 too:
+            string2 = string2.replace(i,"",1) # Remove matching letter from string2
         else:
             return False   # False if not a substring 
     return True            # True if a substring
