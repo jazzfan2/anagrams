@@ -56,31 +56,21 @@ One of more [WORD] arguments must be given, to which the program will present al
 
 For example, the command:
 
-	./anagrams.py -a -l6 github actions
+	./anagrams.py -a -l5 word combination
 
 gives following result:
 
-	Chiba's touting 
-	GitHub action's 
-	GitHub actions 
-	GitHub cation's 
-	GitHub cations 
-	action GitHub's 
-	cation GitHub's 
-	aught's bitcoin 
-	aughts bitcoin 
-	bight's auction 
-	bight's caution 
-	bights auction 
-	bights caution 
-	bough's Titanic 
-	bough's titanic 
-	boughs Titanic 
-	boughs titanic 
-	chino's Bugatti 
-	chinos Bugatti 
-	coitus bathing 
-	touch's baiting 
+	Acton Brown idiom 
+	Acton brown idiom 
+	canto Brown idiom 
+	canto brown idiom 
+	Brown Macon idiot 
+	brown Macon idiot 
+	Robin contd miaow 
+	robin contd miaow 
+	Rodin Twain combo 
+	Rodin twain combo 
+	baton crown idiom
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).

@@ -95,7 +95,7 @@ For example, the command:
 .IP
 .nf
 \f[C]
-./anagrams.py -a -l6 github actions
+./anagrams.py -a -l5 word combination
 \f[]
 .fi
 .LP
@@ -103,27 +103,17 @@ gives following result:
 .IP
 .nf
 \f[C]
-Chiba\[aq]s touting 
-GitHub action\[aq]s 
-GitHub actions 
-GitHub cation\[aq]s 
-GitHub cations 
-action GitHub\[aq]s 
-cation GitHub\[aq]s 
-aught\[aq]s bitcoin 
-aughts bitcoin 
-bight\[aq]s auction 
-bight\[aq]s caution 
-bights auction 
-bights caution 
-bough\[aq]s Titanic 
-bough\[aq]s titanic 
-boughs Titanic 
-boughs titanic 
-chino\[aq]s Bugatti 
-chinos Bugatti 
-coitus bathing 
-touch\[aq]s baiting 
+Acton Brown idiom 
+Acton brown idiom 
+canto Brown idiom 
+canto brown idiom 
+Brown Macon idiot 
+brown Macon idiot 
+Robin contd miaow 
+robin contd miaow 
+Rodin Twain combo 
+Rodin twain combo 
+baton crown idiom
 \f[]
 .fi
 .SH 1

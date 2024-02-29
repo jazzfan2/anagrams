@@ -110,7 +110,7 @@ def combine(signature, word_args, signaturelist, result):
         if is_subset(s, residue):         # All letters in s must be in residue as well
             signaturelist_reduced.append(s)
     for s in signaturelist_reduced:
-        if len(s) >= len(signature):      # Avoid multiple word sequences for 1 word combination
+        if indexlist.index(s) > indexlist.index(signature): # To get 1 sequence per combination
             combine(s, residue, signaturelist_reduced, result + [signature])
 
 
@@ -257,11 +257,11 @@ for word in dictionarylist:
         anagrams[signature] = [word]
 
 # List of signatures of which all (distinct) letters are in word_args as well:
-signaturelist = [] 
+indexlist = [] 
 for signature in anagrams:
     if is_subset(signature, word_args):
-        signaturelist.append(signature)
+        indexlist.append(signature)
 
 # Find the distinct combinations of these signatures that form anagrams of the word_args:
-for signature in signaturelist:
-    combine(signature, word_args, signaturelist, [])
+for signature in indexlist:
+    combine(signature, word_args, indexlist, [])
