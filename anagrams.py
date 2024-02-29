@@ -150,7 +150,7 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t-q MAXQTY
 \t	Results with maximally MAXQTY words only
 \t-I WORD
-\t	Results with WORD only (length not restricted by option -l)
+\t	Results including WORD only (length not restricted by option -l)
 \t-x CHARS
 \t	Exclude words with any of these CHARS 
 """
