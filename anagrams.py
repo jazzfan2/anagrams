@@ -79,15 +79,15 @@ def normalize(string):
     return ''.join(sorted(string.lower()))
 
 
-def compare(string, reference):
-    """Compare string to reference, either return reference of reference residue:"""
+def is_subset(string, reference):
+    """Check if all characters in string are a subset of the characters in reference:"""
     residue = reference
     for i in normalize(string):
         if i in residue:                      # If string letter is in reference as well:
-            residue = residue.replace(i,"",1) # Subtract matching letter from reference
+            residue = residue.replace(i,"",1) # Remove matching letter from reference
         else:
-            return reference  # If any string letter is not in reference: return full reference 
-    return residue            # Else return reference residue, to be matched to later strings
+            return False   # False if not a substring 
+    return True            # True if a substring
         
 
 def combine(signature, word_args, signaturelist, result):
@@ -106,7 +106,7 @@ def combine(signature, word_args, signaturelist, result):
     for s in signaturelist:
         if len(result) == maximum_qty - 1 and s != residue: # Final signature must equal residue
             continue
-        if compare(s, residue) != residue: # Test if letters in s are in residue as well
+        if is_subset(s, residue):         # Test if letters in s are in residue as well
             signaturelist_reduced.append(s)
     for s in signaturelist_reduced:
         if len(s) >= len(signature):      # Avoid multiple word sequences for 1 word combination
@@ -258,7 +258,7 @@ for word in dictionarylist:
 # List of signatures of which all (distinct) letters are in word_args as well:
 signaturelist = [] 
 for signature in anagrams:
-    if compare(signature, word_args) != word_args:
+    if is_subset(signature, word_args):
         signaturelist.append(signature)
 
 # Find the distinct combinations of these signatures that form anagrams of the word_args:
