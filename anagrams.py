@@ -97,10 +97,10 @@ def combine(signature, word_args, signaturelist, result):
     if residue == "":
         result = result + [signature]
         if maximum_qty < 0 or len(result) <= maximum_qty:
-            read_words(result, 0, "")      # Get all words belonging to these sign. combinations
+            get_words(result, 0, "")      # Get all words belonging to these sign. combinations
         return
     if len(residue) < minimum_length or len(result) == maximum_qty:
-        return                             # No solutions will be found in these two cases
+        return                            # No solutions will be found in these two cases
     signaturelist_reduced = []
     for s in signaturelist:
         if len(result) == maximum_qty - 1 and s != residue: # Final signature must equal residue
@@ -112,12 +112,12 @@ def combine(signature, word_args, signaturelist, result):
             combine(s, residue, signaturelist_reduced, result + [signature])
 
 
-def read_words(signaturelist, i, anagramresult):
+def get_words(signaturelist, i, anagramresult):
     """Print all word combinations for the given signature combinations:"""
     for word in anagrams[signaturelist[i]]:
         new_anagramresult = anagramresult + word + " "
         if i < len(signaturelist) - 1:
-            read_words(signaturelist, i + 1, new_anagramresult)
+            get_words(signaturelist, i + 1, new_anagramresult)
         else:
             print(new_anagramresult + incl_word)  # 'include'-word only printed if not empty
 
