@@ -85,8 +85,8 @@ def is_subset(string1, string2):
         if i in string2:                      # If character in string1 is in string2 too:
             string2 = string2.replace(i,"",1) # Remove matching letter from string2
         else:
-            return False   # False if not a substring 
-    return True            # True if a substring
+            return False   # Not a substring 
+    return True            # Substring
         
 
 def combine(signature, word_args, signaturelist, result):
