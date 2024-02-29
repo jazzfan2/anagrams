@@ -56,14 +56,6 @@ def make_list(languagefile, language):
         return dictionarylist
 
 
-def excl(string, excl_chars):
-    """Check if string does not contain any of the excl_chars:"""
-    for char in excl_chars:
-        if char in string:
-            return False
-    return True
-
-
 def normalize(string):
     """ By means of regular expressions, normalize all characters to lower case,
         remove accent marks and other non-alphanumeric characters,
@@ -77,6 +69,14 @@ def normalize(string):
                 c_ced.sub('c', \
                 intpun.sub('', string))))))))
     return ''.join(sorted(string.lower()))
+
+
+def contains(string, characters):
+    """Check if string contains any of characters:"""
+    for char in characters:
+        if char in string:
+            return True
+    return False
 
 
 def is_subset(string1, string2):
@@ -244,7 +244,7 @@ if word_args == "":
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
 for word in dictionarylist:
-    if not excl(word, excl_chars):
+    if contains(word, excl_chars):
         continue
     signature = normalize(word)
     if len(signature) < minimum_length:
