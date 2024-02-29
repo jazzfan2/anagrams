@@ -124,7 +124,7 @@ def get_words(signaturelist, i, anagramresult):
             print(anagramresult_new + incl_word)  # 'include'-word only printed if not empty
 
 
-# os.system('clear')
+os.system('clear')
 
 language = dictionary_nl = "/usr/share/dict/dutch"
 dictionary_am = "/usr/share/dict/american-english"
