@@ -41,17 +41,18 @@ import getopt
 import sys
 import re
 import os
+import time
 
 
-def make_list(languagefile, language):
+def to_list(file, language):
     """Convert language file to dictionarylist:"""
-    if language == "g":
-    # German language list isn't UTF-8 encoded and contains superfluous text, so re-encode:
-        with open(languagefile,'r', encoding='ISO-8859-1') as language:
+    if language == "g": # German language file
+                        # Not UTF-8 encoded and contains superfluous text, so re-encode:
+        with open(file,'r', encoding='ISO-8859-1') as language:
              dictionarylist = [word.replace("\n","") for word in language.readlines()]
         return [ slashtag.sub('', line) for line in dictionarylist if line[0] != "#" ]
     else:
-        with open(languagefile,'r') as language:
+        with open(file,'r') as language:
             dictionarylist = [word.replace("\n","") for word in language.readlines()]
         return dictionarylist
 
@@ -75,8 +76,8 @@ def contains(string, characters):
     """Check if string contains any of characters:"""
     for char in characters:
         if char in string:
-            return True
-    return False
+            return True                       # one of more of characters is in string
+    return False                              # none of characters is in string
 
 
 def is_subset(string1, string2):
@@ -85,8 +86,8 @@ def is_subset(string1, string2):
         if i in string2:                      # If character in string1 is in string2 too:
             string2 = string2.replace(i,"",1) # Remove matching letter from string2
         else:
-            return False   # Not a substring 
-    return True            # Substring
+            return False                      # string1 characters are not subset
+    return True                               # string1 characters are subset
         
 
 def combine(signature, word_args, signaturelist, result):
@@ -99,13 +100,14 @@ def combine(signature, word_args, signaturelist, result):
         if maximum_qty < 0 or len(result) <= maximum_qty:
             get_words(result, 0, "")      # Get all words belonging to these sign. combinations
         return
-    if len(residue) < minimum_length or len(result) == maximum_qty:
+    if len(residue) < minimum_length or len(result) == maximum_qty-1:
         return                            # No solutions will be found in these two cases
     signaturelist_reduced = []
     for s in signaturelist:
-        if len(result) == maximum_qty - 1 and s != residue: # Final signature must equal residue
-            continue
-        if is_subset(s, residue):         # Test if letters in s are in residue as well
+        if s != residue and \
+           len(result) == maximum_qty-2:  # If 's' is not equal to residue if maximally 1 more
+            continue                      # recursion is left to empty residue, 's' is rejected
+        if is_subset(s, residue):         # All letters in s must be in residue as well
             signaturelist_reduced.append(s)
     for s in signaturelist_reduced:
         if len(s) >= len(signature):      # Avoid multiple word sequences for 1 word combination
@@ -115,14 +117,14 @@ def combine(signature, word_args, signaturelist, result):
 def get_words(signaturelist, i, anagramresult):
     """Print all word combinations for the given signature combinations:"""
     for word in anagrams[signaturelist[i]]:
-        new_anagramresult = anagramresult + word + " "
+        anagramresult_new = anagramresult + word + " "
         if i < len(signaturelist) - 1:
-            get_words(signaturelist, i + 1, new_anagramresult)
+            get_words(signaturelist, i + 1, anagramresult_new)
         else:
-            print(new_anagramresult + incl_word)  # 'include'-word only printed if not empty
+            print(anagramresult_new + incl_word)  # 'include'-word only printed if not empty
 
 
-os.system('clear')
+# os.system('clear')
 
 language = dictionary_nl = "/usr/share/dict/dutch"
 dictionary_am = "/usr/share/dict/american-english"
@@ -154,7 +156,7 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t	Exclude words with any of these CHARS 
 """
 
-dictionarylist = make_list(dictionary_nl, "d")  # Dutch is default language
+dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
 word_args      = ""  # Initializations of word_args
 maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
 minimum_length = 2   # To avoid single letters to appear in result, unless so chosen by option -l
@@ -185,19 +187,19 @@ for opt, arg in options:
         print(usage)
         sys.exit()
     elif opt in ('-a'):
-        dictionarylist = make_list(dictionary_am, "a")
+        dictionarylist = to_list(dictionary_am, "a")
     elif opt in ('-b'):
-        dictionarylist = make_list(dictionary_br, "b")
+        dictionarylist = to_list(dictionary_br, "b")
     elif opt in ('-d'):
-        dictionarylist = make_list(dictionary_nl, "d")
+        dictionarylist = to_list(dictionary_nl, "d")
     elif opt in ('-f'):
-        dictionarylist = make_list(dictionary_fr, "f")
+        dictionarylist = to_list(dictionary_fr, "f")
     elif opt in ('-g'):
-        dictionarylist = make_list(dictionary_de, "g")
+        dictionarylist = to_list(dictionary_de, "g")
     elif opt in ('-i'):
-        dictionarylist = make_list(dictionary_it, "i")
+        dictionarylist = to_list(dictionary_it, "i")
     elif opt in ('-s'):
-        dictionarylist = make_list(dictionary_sp, "s")
+        dictionarylist = to_list(dictionary_sp, "s")
     elif opt in ('-l'):
         minimum_length = int(arg)
     elif opt in ('-q'):
