@@ -11,7 +11,7 @@
 # - a word that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 #
-# Matching combinations of words appear in one distinct sequence only.
+# Each matching combination of words appears in one distinct word sequence.
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.

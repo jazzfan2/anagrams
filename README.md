@@ -4,7 +4,7 @@ anagrams.py - a program that finds all word-*COMBINATIONS* in a given language t
 # Description:
 anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a 
 given language that form an anagram of the (combination of) word(s) - whether or not existing(!) - given as argument(s).
-Matching combinations of words appear in one distinct sequence only.
+Each matching combination of words appears in one distinct word sequence.
 
 anagrams.py offers options to set:
 - language: only one at the time, default language is Dutch;
