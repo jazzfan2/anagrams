@@ -241,8 +241,8 @@ for incl_word in incl_words_list:
         else:          # Interrupt if 'include'-word characters are not a subset of word_args
             sys.exit()
 
-    # Terminate program if 'include'-signature equals word_args signature:
-    if word_args == "":      # word_args has become empty after subtractng incl_word
+    # Print 'include'-words here if covering all word_args characters, and terminate program:
+    if word_args == "":      # word_args has become empty after subtracting all incl_words
         print(spaces1.sub('', spaces2.sub(' ', incl_words)))
         sys.exit()
 

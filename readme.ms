@@ -22,8 +22,8 @@ anagrams.py offers options to set: - language: only one at the time,
 default language is Dutch; - minimum length of words in matching
 combination; - maximum number of words in matching combination; - a
 (quoted sequence of) word(s) that must be part of the matching
-combination; - characters to be excluded from match (in order to avoid
-dots, apostrophs etc.).
+combination (length not restricted; - characters to be excluded from
+match (in order to avoid dots, apostrophs etc.).
 .PP
 The results are sent to standard output and can be piped to e.g.\ `less'
 or other utilities and applications.
