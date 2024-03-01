@@ -8,7 +8,7 @@
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
-# - a word that must be part of the matching combination;
+# - a (quoted sequence of) word(s) that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 #
 # Each matching combination of words appears in one distinct word sequence.
@@ -68,7 +68,7 @@ def normalize(string):
                 u_acc.sub('u', \
                 n_til.sub('n', \
                 c_ced.sub('c', \
-                intpun.sub('', string))))))))
+                intpunct.sub('', string))))))))
     return ''.join(sorted(string.lower()))
 
 
@@ -121,7 +121,7 @@ def get_words(signaturelist, i, anagramresult):
         if i < len(signaturelist) - 1:
             get_words(signaturelist, i + 1, anagramresult_new)
         else:
-            print(anagramresult_new + incl_word)  # 'include'-word only printed if not empty
+            print(anagramresult_new + spaces1.sub('', spaces2.sub(' ', incl_words)))
 
 
 # os.system('clear')
@@ -150,8 +150,8 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 \t	Results with words of at least MINLENGTH only
 \t-q MAXQTY
 \t	Results with maximally MAXQTY words only
-\t-I WORD
-\t	Results including WORD only (length not restricted by option -l)
+\t-I WORDS
+\t	Results including WORDS only (length not restricted by option -l)
 \t-x CHARS
 \t	Exclude words with any of these CHARS 
 """
@@ -160,12 +160,11 @@ dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
 word_args      = ""  # Initializations of word_args
 maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
 minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
-incl_word      = ""
+incl_words     = ""
 excl_chars     = "_" # Default: underscore does not appear so can always be excluded
 
 
 """Regular expressions:"""
-intpun = re.compile('[\'\" :.&-]')
 a_acc = re.compile('[áàäâåÁÀÄÂ]')
 e_acc = re.compile('[éèëêÉÈËÊ]')
 i_acc = re.compile('[ïíìÏÍÌ]')
@@ -173,7 +172,10 @@ o_acc = re.compile('[óòöôøÓÒÖÔ]')
 u_acc = re.compile('[úùüÚÙÜ]')
 n_til = re.compile('[ñÑ]')
 c_ced = re.compile('[çÇ]')
+intpunct = re.compile('[\'\" :.&-]')
 slashtag = re.compile('\/[^/]*')
+spaces1 = re.compile('^ +')
+spaces2 = re.compile(' +')
 
 '""Select option(s):""'
 try:
@@ -205,7 +207,7 @@ for opt, arg in options:
     elif opt in ('-q'):
         maximum_qty = int(arg)
     elif opt in ('-I'):
-        incl_word = arg
+        incl_words = arg
     elif opt in ('-x'):
         excl_chars = arg
 
@@ -220,28 +222,32 @@ for word in non_option_args:
     word_args = word_args + word
 word_args = normalize(word_args)
 
-# Stop if 'include'-word is not in the language dictionary:
-if incl_word != "" and incl_word not in dictionarylist:
-    sys.exit()
 
-# Convert the 'include'-word to a unique sorted "Include"-signature:
-incl_signa = normalize(incl_word)
+# Loop through all 'include'-words:
+incl_words_list = [ word for word in incl_words.split(' ') ]
+for incl_word in incl_words_list:
 
-# Subtract 'include'-signature from word_args signature:
-for char in incl_signa:
-    if char in word_args:
-        word_args = word_args.replace(char, "", 1)
-    else:          # Interrupt if 'include'-word characters are not a subset of word_args
+    # Stop if 'include'-word is not in the language dictionary:
+    if incl_word != "" and incl_word not in dictionarylist:
+       sys.exit()
+
+    # Convert the 'include'-word to a unique sorted "Include"-signature:
+    incl_signa = normalize(incl_word)
+
+    # Subtract 'include'-signature from word_args signature:
+    for char in incl_signa:
+        if char in word_args:
+            word_args = word_args.replace(char, "", 1)
+        else:          # Interrupt if 'include'-word characters are not a subset of word_args
+            sys.exit()
+
+    # Terminate program if 'include'-signature equals word_args signature:
+    if word_args == "":      # word_args has become empty after subtractng incl_word
+        print(spaces1.sub('', spaces2.sub(' ', incl_words)))
         sys.exit()
 
-# Terminate program if 'include'-signature equals word_args signature:
-if word_args == "":      # word_args has become empty after subtractng incl_word
-    print(incl_word)
-    sys.exit()
-
-# The 'include'-word is part of the result in advance, so remaining maximum_qty becomes 1 less:
-if (incl_word):
-    maximum_qty -= 1
+    # The 'include'-word is part of result in advance, so remaining maximum_qty becomes 1 less:
+        maximum_qty -= 1
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}

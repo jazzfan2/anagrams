@@ -10,7 +10,7 @@ anagrams.py offers options to set:
 - language: only one at the time, default language is Dutch;
 - minimum length of words in matching combination;
 - maximum number of words in matching combination;
-- a word that must be part of the matching combination;
+- a (quoted sequence of) word(s) that must be part of the matching combination;
 - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
@@ -47,7 +47,7 @@ If wished and as per system configuration, above paths and langauge default may 
 	-s            Spanish
 	-l MINLENGTH  Results with words of at least MINLENGTH only
 	-q MAXQTY     Results with maximally MAXQTY words only
-	-I WORD       Results including WORD only (length not restricted by option -l)
+	-I WORDS      Results including WORDS only (length not restricted by option -l)
 	-x CHARS      Exclude words with any of these CHARS 
 
 Options can be combined but only one (1) language can be set at the time.
