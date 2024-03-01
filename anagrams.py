@@ -124,7 +124,7 @@ def get_words(signaturelist, i, anagramresult):
             print(anagramresult_new + incl_word)  # 'include'-word only printed if not empty
 
 
-os.system('clear')
+# os.system('clear')
 
 language = dictionary_nl = "/usr/share/dict/dutch"
 dictionary_am = "/usr/share/dict/american-english"
@@ -159,13 +159,13 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]\n
 dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
 word_args      = ""  # Initializations of word_args
 maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
-minimum_length = 2   # To avoid single letters to appear in result, unless so chosen by option -l
+minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
 incl_word      = ""
 excl_chars     = "_" # Default: underscore does not appear so can always be excluded
 
 
 """Regular expressions:"""
-intpun = re.compile('[\'\" .&-]')
+intpun = re.compile('[\'\" :.&-]')
 a_acc = re.compile('[áàäâåÁÀÄÂ]')
 e_acc = re.compile('[éèëêÉÈËÊ]')
 i_acc = re.compile('[ïíìÏÍÌ]')
@@ -234,14 +234,14 @@ for char in incl_signa:
     else:          # Interrupt if 'include'-word characters are not a subset of word_args
         sys.exit()
 
-# The 'include'-word is part of the result in advance so maximum_qty value is decremented:
-if (incl_word):
-    maximum_qty -= 1
-
-# Terminate program if 'include'-signature equals word_args signature, so latter is empty:
-if word_args == "":
+# Terminate program if 'include'-signature equals word_args signature:
+if word_args == "":      # word_args has become empty after subtractng incl_word
     print(incl_word)
     sys.exit()
+
+# The 'include'-word is part of the result in advance, so remaining maximum_qty becomes 1 less:
+if (incl_word):
+    maximum_qty -= 1
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}
