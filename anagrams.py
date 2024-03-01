@@ -11,7 +11,7 @@
 # - a word that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
 #
-# Matching combinations of words generally appear in one distinct sequence only.
+# Matching combinations of words appear in one distinct sequence only.
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
@@ -98,19 +98,19 @@ def combine(signature, word_args, signaturelist, result):
     if residue == "":
         result = result + [signature]
         if maximum_qty < 0 or len(result) <= maximum_qty:
-            get_words(result, 0, "")      # Get all words belonging to these sign. combinations
+            get_words(result, 0, "")     # Get all words belonging to these sign. combinations
         return
     if len(residue) < minimum_length or len(result) == maximum_qty-1:
-        return                            # No solutions will be found in these two cases
+        return                           # No solutions will be found in these two cases
     signaturelist_reduced = []
     for s in signaturelist:
         if s != residue and \
-           len(result) == maximum_qty-2:  # If 's' is not equal to residue if maximally 1 more
-            continue                      # recursion is left to empty residue, 's' is rejected
-        if is_subset(s, residue):         # All letters in s must be in residue as well
+           len(result) == maximum_qty-2: # If 's' is not equal to residue if maximally 1 more
+            continue                     # recursion is left to empty residue, 's' is rejected
+        if is_subset(s, residue):        # All letters in s must be in residue as well
             signaturelist_reduced.append(s)
     for s in signaturelist_reduced:
-        if indexlist.index(s) > indexlist.index(signature): # To get 1 sequence per combination
+        if order[s] > order[signature]:  # To achieve 1 distinct sequence per sign. combination
             combine(s, residue, signaturelist_reduced, result + [signature])
 
 
@@ -257,11 +257,18 @@ for word in dictionarylist:
         anagrams[signature] = [word]
 
 # List of signatures of which all (distinct) letters are in word_args as well:
-indexlist = [] 
+signaturelist = [] 
 for signature in anagrams:
     if is_subset(signature, word_args):
-        indexlist.append(signature)
+        signaturelist.append(signature)
+
+# Quick searchable dictionary to compare signature index order:
+index = 0
+order = {}
+for signature in signaturelist:
+    order[signature] = index
+    index += 1
 
 # Find the distinct combinations of these signatures that form anagrams of the word_args:
-for signature in indexlist:
-    combine(signature, word_args, indexlist, [])
+for signature in signaturelist:
+    combine(signature, word_args, signaturelist, [])
