@@ -173,7 +173,7 @@ anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
 \t-q MAXQTY
 \t	Results with maximally MAXQTY words only
 \t-I WORDS
-\t	Results including WORDS only (length not restricted by option -l)
+\t	Results including WORDS only (NOT restricted by options -l, -x)
 \t-x CHARS
 \t	Exclude words with any of these CHARS
 \t-P
@@ -277,7 +277,7 @@ for incl_word in incl_words_list:
         sys.exit()
 
     # The 'include'-word is part of result in advance, so remaining maximum_qty becomes 1 less:
-        maximum_qty -= 1
+    maximum_qty -= 1
 
 # Generate anagrams dictionary with all words per unique sorted character signature:
 anagrams = {}

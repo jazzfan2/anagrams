@@ -80,7 +80,7 @@ Options:
 -s            Spanish
 -l MINLENGTH  Results with words of at least MINLENGTH only
 -q MAXQTY     Results with maximally MAXQTY words only
--I WORDS      Results including WORDS only (length not restricted by option -l)
+-I WORDS      Results including WORDS only (NOT restricted by options -l, -x)
 -x CHARS      Exclude words with any of these CHARS
 -P            Permute word order per anagram if it contains 2 or more words 
 \f[]
