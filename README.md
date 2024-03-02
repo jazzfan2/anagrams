@@ -4,14 +4,14 @@ anagrams.py - a program that finds all word-*COMBINATIONS* in a given language t
 # Description:
 anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a 
 given language that form an anagram of the (combination of) word(s) - whether or not existing(!) - given as argument(s).
-Each matching combination of words appears in one distinct word sequence.
 
-anagrams.py offers options to set:
+anagrams.py offers options to chose:
 - language: only one at the time, default language is Dutch;
 - minimum length of words in matching combination;
 - maximum number of words in matching combination;
 - a (quoted sequence of) word(s) that must be part of the matching combination (length not restricted);
-- characters to be excluded from match (in order to avoid dots, apostrophs etc.).
+- characters to be excluded from match (in order to avoid dots, apostrophs etc.);
+- to permute word order of matching word combinations (default only 1 word order).
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
 
@@ -34,7 +34,7 @@ If wished and as per system configuration, above paths and langauge default may 
 
 ## Usage:
 
-	anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]
+	anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
 
 ## Options:
 	-a            American-English
@@ -48,7 +48,8 @@ If wished and as per system configuration, above paths and langauge default may 
 	-l MINLENGTH  Results with words of at least MINLENGTH only
 	-q MAXQTY     Results with maximally MAXQTY words only
 	-I WORDS      Results including WORDS only (length not restricted by option -l)
-	-x CHARS      Exclude words with any of these CHARS 
+	-x CHARS      Exclude words with any of these CHARS
+	-P            Permute word order per anagram if it contains 2 or more words 
 
 Options can be combined but only one (1) language can be set at the time.
 

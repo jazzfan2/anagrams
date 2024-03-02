@@ -4,14 +4,13 @@
 # Date  : 26-02-2024
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram of the (combination of) word(s) - whether
-# or not existing(!) - given as argument(s). With options in order to set:
+# or not existing(!) - given as argument(s). With options in order to chose:
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
 # - a (quoted sequence of) word(s) that must be part of the matching combination;
-# - characters to be excluded from match (in order to avoid dots, apostrophs etc.).
-#
-# Each matching combination of words appears in one distinct word sequence.
+# - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
+# - to permute word order of matching word combinations (default only 1 word order).
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
@@ -98,7 +97,7 @@ def combine(signature, word_args, signaturelist, result):
     if residue == "":
         result = result + [signature]
         if maximum_qty < 0 or len(result) <= maximum_qty:
-            get_words(result, 0, "")     # Get all words belonging to these sign. combinations
+            get_words(result, 0, [])     # Get all words belonging to these sign. combinations
         return
     if len(residue) < minimum_length or len(result) == maximum_qty-1:
         return                           # No solutions will be found in these two cases
@@ -117,11 +116,34 @@ def combine(signature, word_args, signaturelist, result):
 def get_words(signaturelist, i, anagramresult):
     """Print all word combinations for the given signature combinations:"""
     for word in anagrams[signaturelist[i]]:
-        anagramresult_new = anagramresult + word + " "
+        anagramresult_new = anagramresult + [word]
         if i < len(signaturelist) - 1:
             get_words(signaturelist, i + 1, anagramresult_new)
+        elif permute:
+            permutelist(anagramresult_new + incl_words_list)
         else:
-            print(anagramresult_new + spaces1.sub('', spaces2.sub(' ', incl_words)))
+            printlist(anagramresult_new + incl_words_list)
+
+
+def permutelist(list1, list2 = []):
+    """Generate and print all list permutations"""
+    items = list1
+    out = list2
+    if items == []:
+        printlist(out)
+        return
+    previous = []
+    for i in range(len(items)):
+        if items[i] not in previous:
+            previous.append(items[i])
+            permutelist(items[0:i] + items[i+1:], out + items[i:i+1])
+
+
+def printlist(lis):
+    """Print one line of all words in list"""
+    for word in lis:
+        print(word, end=' ')
+    print()
 
 
 # os.system('clear')
@@ -137,7 +159,7 @@ dictionary_it = "/usr/share/dict/italian"
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
-anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
 \t-a	American-English
 \t-b	British-English
 \t-d	Dutch
@@ -153,7 +175,9 @@ anagrams.py [-abdfghislqx] WORD(1) [ ... WORD(n)]
 \t-I WORDS
 \t	Results including WORDS only (length not restricted by option -l)
 \t-x CHARS
-\t	Exclude words with any of these CHARS 
+\t	Exclude words with any of these CHARS
+\t-P
+\t	Permute word order per anagram if it contains 2 or more words
 """
 
 dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
@@ -162,6 +186,7 @@ maximum_qty    = -1  # -1 means that anagram matches are not filtered to word qu
 minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
 incl_words     = ""
 excl_chars     = "_" # Default: underscore does not appear so can always be excluded
+permute        = 0
 
 
 """Regular expressions:"""
@@ -179,7 +204,7 @@ spaces2 = re.compile(' +')
 
 '""Select option(s):""'
 try:
-    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:I:x:')
+    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:I:x:P')
 except:
     print(usage)
     sys.exit()
@@ -210,6 +235,8 @@ for opt, arg in options:
         incl_words = arg
     elif opt in ('-x'):
         excl_chars = arg
+    elif opt in ('-P'):
+        permute = 1
 
 # Non-option argument(s) must be included: 
 if len(non_option_args) == 0:
@@ -224,7 +251,7 @@ word_args = normalize(word_args)
 
 
 # Loop through all 'include'-words:
-incl_words_list = [ word for word in incl_words.split(' ') ]
+incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
 for incl_word in incl_words_list:
 
     # Stop if 'include'-word is not in the language dictionary:
@@ -243,7 +270,10 @@ for incl_word in incl_words_list:
 
     # Print 'include'-words here if covering all word_args characters, and terminate program:
     if word_args == "":      # word_args has become empty after subtracting all incl_words
-        print(spaces1.sub('', spaces2.sub(' ', incl_words)))
+        if permute:
+            permutelist(incl_words_list)
+        else:
+            printlist(incl_words_list)
         sys.exit()
 
     # The 'include'-word is part of result in advance, so remaining maximum_qty becomes 1 less:
