@@ -156,6 +156,27 @@ dictionary_fr = "/usr/share/dict/french"
 dictionary_sp = "/usr/share/dict/spanish"
 dictionary_it = "/usr/share/dict/italian"
 
+dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
+word_args      = ""  # Initializations of word_args
+maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
+minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
+incl_words     = ""
+excl_chars     = "_" # Default: underscore does not appear so can always be excluded
+permute        = 0
+
+# Regular expressions:
+a_acc = re.compile('[áàäâåÁÀÄÂ]')
+e_acc = re.compile('[éèëêÉÈËÊ]')
+i_acc = re.compile('[ïíìÏÍÌ]')
+o_acc = re.compile('[óòöôøÓÒÖÔ]')
+u_acc = re.compile('[úùüÚÙÜ]')
+n_til = re.compile('[ñÑ]')
+c_ced = re.compile('[çÇ]')
+intpunct = re.compile('[\'\" :.&-]')
+slashtag = re.compile('\/[^/]*')
+spaces1 = re.compile('^ +')
+spaces2 = re.compile(' +')
+
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
@@ -180,29 +201,7 @@ anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
 \t	Permute word order per anagram if it contains 2 or more words
 """
 
-dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
-word_args      = ""  # Initializations of word_args
-maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
-minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
-incl_words     = ""
-excl_chars     = "_" # Default: underscore does not appear so can always be excluded
-permute        = 0
-
-
-"""Regular expressions:"""
-a_acc = re.compile('[áàäâåÁÀÄÂ]')
-e_acc = re.compile('[éèëêÉÈËÊ]')
-i_acc = re.compile('[ïíìÏÍÌ]')
-o_acc = re.compile('[óòöôøÓÒÖÔ]')
-u_acc = re.compile('[úùüÚÙÜ]')
-n_til = re.compile('[ñÑ]')
-c_ced = re.compile('[çÇ]')
-intpunct = re.compile('[\'\" :.&-]')
-slashtag = re.compile('\/[^/]*')
-spaces1 = re.compile('^ +')
-spaces2 = re.compile(' +')
-
-'""Select option(s):""'
+# Select option(s):
 try:
     options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:x:I:P')
 except:
