@@ -18,11 +18,11 @@ argument(s).
 .PP
 anagrams.py offers options to chose: - language: only one at the time,
 default language is Dutch; - minimum length of words in matching
-combination; - maximum number of words in matching combination; - a
-(quoted sequence of) word(s) that must be part of the matching
-combination (length not restricted); - characters to be excluded from
-match (in order to avoid dots, apostrophs etc.); - to permute word order
-of matching word combinations (default only 1 word order).
+combination; - maximum number of words in matching combination; -
+characters to be excluded from match (in order to avoid dots, apostrophs
+etc.); - a (quoted sequence of) word(s) that must be part of the
+matching combination (length nor characters restricted); - to permute
+word order of matching word combinations (default only 1 word order).
 .PP
 The results are sent to standard output and can be piped to e.g.\ `less'
 or other utilities and applications.

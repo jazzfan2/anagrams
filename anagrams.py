@@ -172,8 +172,8 @@ anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
 \t	Results with words of at least MINLENGTH only
 \t-q MAXQTY
 \t	Results with maximally MAXQTY words only
-\t-I WORDS
-\t	Results including WORDS only (NOT restricted by options -l, -x)
+\t-I INCLWRDS
+\t	Results including INCLWRDS (NOT restricted by options -l, -x) only 
 \t-x CHARS
 \t	Exclude words with any of these CHARS
 \t-P
