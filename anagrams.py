@@ -8,8 +8,8 @@
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
-# - a (quoted sequence of) word(s) that must be part of the matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
+# - a (quoted sequence of) word(s) that must be part of the matching combination;
 # - to permute word order of matching word combinations (default only 1 word order).
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
@@ -159,7 +159,7 @@ dictionary_it = "/usr/share/dict/italian"
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
-anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
 \t-a	American-English
 \t-b	British-English
 \t-d	Dutch
@@ -172,10 +172,10 @@ anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
 \t	Results with words of at least MINLENGTH only
 \t-q MAXQTY
 \t	Results with maximally MAXQTY words only
-\t-I INCLWRDS
-\t	Results including INCLWRDS (NOT restricted by options -l, -x) only 
 \t-x CHARS
 \t	Exclude words with any of these CHARS
+\t-I INCLWRDS
+\t	Results including INCLWRDS (NOT restricted by options -l, -x) only 
 \t-P
 \t	Permute word order per anagram if it contains 2 or more words
 """
@@ -204,7 +204,7 @@ spaces2 = re.compile(' +')
 
 '""Select option(s):""'
 try:
-    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:I:x:P')
+    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:x:I:P')
 except:
     print(usage)
     sys.exit()
@@ -231,10 +231,10 @@ for opt, arg in options:
         minimum_length = int(arg)
     elif opt in ('-q'):
         maximum_qty = int(arg)
-    elif opt in ('-I'):
-        incl_words = arg
     elif opt in ('-x'):
         excl_chars = arg
+    elif opt in ('-I'):
+        incl_words = arg
     elif opt in ('-P'):
         permute = 1
 

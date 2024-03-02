@@ -60,7 +60,7 @@ Usage:
 .IP
 .nf
 \f[C]
-anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
 \f[]
 .fi
 .SH 2
@@ -80,8 +80,8 @@ Options:
 -s            Spanish
 -l MINLENGTH  Results with words of at least MINLENGTH only
 -q MAXQTY     Results with maximally MAXQTY words only
--I WORDS      Results including WORDS only (NOT restricted by options -l, -x)
 -x CHARS      Exclude words with any of these CHARS
+-I INCLWRDS   Results including INCLWRDS (NOT restricted by options -l, -x) only
 -P            Permute word order per anagram if it contains 2 or more words 
 \f[]
 .fi

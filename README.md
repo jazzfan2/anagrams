@@ -34,7 +34,7 @@ If wished and as per system configuration, above paths and langauge default may 
 
 ## Usage:
 
-	anagrams.py [-abdfghislqIxP] WORD(1) [ ... WORD(n)]
+	anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
 
 ## Options:
 	-a            American-English
@@ -47,8 +47,8 @@ If wished and as per system configuration, above paths and langauge default may 
 	-s            Spanish
 	-l MINLENGTH  Results with words of at least MINLENGTH only
 	-q MAXQTY     Results with maximally MAXQTY words only
-	-I WORDS      Results including WORDS only (NOT restricted by options -l, -x)
 	-x CHARS      Exclude words with any of these CHARS
+	-I INCLWRDS   Results including INCLWRDS (NOT restricted by options -l, -x) only
 	-P            Permute word order per anagram if it contains 2 or more words 
 
 Options can be combined but only one (1) language can be set at the time.
