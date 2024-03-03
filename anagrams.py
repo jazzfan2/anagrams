@@ -163,7 +163,6 @@ dictionarylist  = to_list(dictionary_nl, "d")  # Dutch is default language
 word_args       = ""  # Initializations of word_args
 maximum_qty     = -1  # -1 means that anagram matches are not filtered to word quantity 
 minimum_length  = 2   # Blocks single letters to appear in result, unless so chosen by option -l
-incl_words_list = []
 incl_words      = ""
 excl_chars      = "_" # Default: underscore does not appear so can always be excluded
 permute         = 0
@@ -205,7 +204,7 @@ anagrams.py [-abdfghislqxIPS] WORD(1) [ ... WORD(n)]
 \t-P
 \t	Permute word order per anagram if it contains 2 or more words
 \t-S
-\t	Instead of anagrams, print all single words being a character subset 
+\t	Instead of anagrams, print all character subset words (not with option -I) 
 """
 
 # Select option(s):
@@ -258,9 +257,8 @@ for word in non_option_args:
 word_args = normalize(word_args)
 
 
-# In case of option -I, loop through all 'include'-words, unless option -S (subsets) is given:
-if not print_subsets:
-    incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
+# In case of option -I, loop through all 'include'-words:
+incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
 for incl_word in incl_words_list:
 
     # Convert the 'include'-word to a unique sorted "Include"-signature:
@@ -304,7 +302,7 @@ for signature in anagrams:
         signaturelist.append(signature)
 
 # In case of option -S, print all single words with all (distinct) letters in word_args:
-if print_subsets:
+if print_subsets and incl_words == "":      # Unless option -I has been used as well
     subwords = set()
     for signature in signaturelist:
         if len(signature) >= minimum_length and not contains(signature, excl_chars):

@@ -53,7 +53,7 @@ If wished and as per system configuration, above paths and langauge default may 
 	-x CHARS      Exclude words with any of these CHARS
 	-I INCLWRDS   Results including INCLWRDS (NOT restricted by options -l, -x) only
 	-P            Permute word order per anagram if it contains 2 or more words
-	-S            Instead of anagrams, print all single words being a character subset 
+	-S            Instead of anagrams, print all character subset words (not with option -I) 
 
 Options can be combined but only one (1) language can be set at the time.
 
