@@ -11,8 +11,9 @@ Following options can be set:
 - maximum number of words in matching combination;
 - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
 - a (quoted sequence of) word(s) that must be part of the matching combination (length nor characters restricted);
+
 or to have the program:
-- permute the word order of matching word combinations (default only 1 word order);
+- permute the word order of all matching word combinations (default only 1 word order);
 - instead of returning the anagrams, provide all the single "subset-words".
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
@@ -52,7 +53,7 @@ If wished and as per system configuration, above paths and langauge default may 
 	-x CHARS      Exclude words with any of these CHARS
 	-I INCLWRDS   Results including INCLWRDS (NOT restricted by options -l, -x) only
 	-P            Permute word order per anagram if it contains 2 or more words
-	-S            Instead of anagrams, print all single words having a character subset 
+	-S            Instead of anagrams, print all single words being a character subset 
 
 Options can be combined but only one (1) language can be set at the time.
 
