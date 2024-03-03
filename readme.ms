@@ -16,12 +16,13 @@ word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram of
 the (combination of) word(s) - whether or not existing(!) - given as
 argument(s).
 .PP
-Following options can be set: - language: only one at the time, default
-language is Dutch; - minimum length of words in matching combination; -
-maximum number of words in matching combination; - characters to be
-excluded from match (in order to avoid dots, apostrophs etc.); - a
-(quoted sequence of) word(s) that must be part of the matching
-combination (whether or not existing, length nor characters restricted);
+It offers the following possibilities to manipulate and filter the
+output: - language: only one at the time, default language is Dutch; -
+minimum length of words in matching combination; - maximum number of
+words in matching combination; - characters to be excluded from match
+(in order to avoid dots, apostrophs etc.); - a (quoted sequence of)
+word(s) that must be part of the matching combination (whether or not
+existing, length nor characters restricted);
 .PP
 or to have the program: - permute the word order of all matching word
 combinations (default only 1 word order); - instead of returning the
