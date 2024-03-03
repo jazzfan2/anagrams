@@ -256,7 +256,6 @@ for word in non_option_args:
     word_args = word_args + word
 word_args = normalize(word_args)
 
-
 # In case of option -I, loop through all 'include'-words:
 incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
 for incl_word in incl_words_list:
