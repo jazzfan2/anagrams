@@ -4,13 +4,16 @@
 # Date  : 26-02-2024
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram of the (combination of) word(s) - whether
-# or not existing(!) - given as argument(s). With options in order to chose:
+# or not existing(!) - given as argument(s).
+# Following options can be set:
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
 # - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
 # - a (quoted sequence of) word(s) that must be part of the matching combination;
-# - to permute word order of matching word combinations (default only 1 word order).
+# or to have the program:
+# - permute the word order of all matching word combinations (default only 1 word order);
+# - instead of returning the anagrams, provide all the single "subset-words".
 #
 # Disclaimer: word combinations presented by this program as anagram solutions can't
 # be expected to be grammatically correct nor to make sense in general.
@@ -156,13 +159,15 @@ dictionary_fr = "/usr/share/dict/french"
 dictionary_sp = "/usr/share/dict/spanish"
 dictionary_it = "/usr/share/dict/italian"
 
-dictionarylist = to_list(dictionary_nl, "d")  # Dutch is default language
-word_args      = ""  # Initializations of word_args
-maximum_qty    = -1  # -1 means that anagram matches are not filtered to word quantity 
-minimum_length = 2   # Blocks single letters to appear in result, unless so chosen by option -l
-incl_words     = ""
-excl_chars     = "_" # Default: underscore does not appear so can always be excluded
-permute        = 0
+dictionarylist  = to_list(dictionary_nl, "d")  # Dutch is default language
+word_args       = ""  # Initializations of word_args
+maximum_qty     = -1  # -1 means that anagram matches are not filtered to word quantity 
+minimum_length  = 2   # Blocks single letters to appear in result, unless so chosen by option -l
+incl_words_list = []
+incl_words      = ""
+excl_chars      = "_" # Default: underscore does not appear so can always be excluded
+permute         = 0
+print_subsets   = 0
 
 # Regular expressions:
 a_acc = re.compile('[áàäâåÁÀÄÂ]')
@@ -180,7 +185,7 @@ spaces2 = re.compile(' +')
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
 Usage:
-anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqxIPS] WORD(1) [ ... WORD(n)]
 \t-a	American-English
 \t-b	British-English
 \t-d	Dutch
@@ -199,11 +204,13 @@ anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
 \t	Results including INCLWRDS (NOT restricted by options -l, -x) only 
 \t-P
 \t	Permute word order per anagram if it contains 2 or more words
+\t-S
+\t	Instead of anagrams, print all single words being a character subset 
 """
 
 # Select option(s):
 try:
-    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:x:I:P')
+    options, non_option_args = getopt.getopt(sys.argv[1:], 'abdfghisl:q:x:I:PS')
 except:
     print(usage)
     sys.exit()
@@ -236,6 +243,8 @@ for opt, arg in options:
         incl_words = arg
     elif opt in ('-P'):
         permute = 1
+    elif opt in ('-S'):
+        print_subsets = 1
 
 # Non-option argument(s) must be included: 
 if len(non_option_args) == 0:
@@ -249,13 +258,10 @@ for word in non_option_args:
 word_args = normalize(word_args)
 
 
-# Loop through all 'include'-words:
-incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
+# In case of option -I, loop through all 'include'-words, unless option -S (subsets) is given:
+if not print_subsets:
+    incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
 for incl_word in incl_words_list:
-
-    # Stop if 'include'-word is not in the language dictionary:
-    if incl_word != "" and incl_word not in dictionarylist:
-       sys.exit()
 
     # Convert the 'include'-word to a unique sorted "Include"-signature:
     incl_signa = normalize(incl_word)
@@ -264,11 +270,11 @@ for incl_word in incl_words_list:
     for char in incl_signa:
         if char in word_args:
             word_args = word_args.replace(char, "", 1)
-        else:          # Interrupt if 'include'-word characters are not a subset of word_args
+        else:            # Interrupt if 'include'-word characters are not a subset of word_args
             sys.exit()
 
     # Print 'include'-words here if covering all word_args characters, and terminate program:
-    if word_args == "":      # word_args has become empty after subtracting all incl_words
+    if word_args == "":  # word_args has become empty after subtracting all incl_words
         if permute:
             permutelist(incl_words_list)
         else:
@@ -291,11 +297,23 @@ for word in dictionarylist:
     else:
         anagrams[signature] = [word]
 
-# List of signatures of which all (distinct) letters are in word_args as well:
+# List of signatures of which all (distinct) letters are in word_args:
 signaturelist = [] 
 for signature in anagrams:
     if is_subset(signature, word_args):
         signaturelist.append(signature)
+
+# In case of option -S, print all single words with all (distinct) letters in word_args:
+if print_subsets:
+    subwords = set()
+    for signature in signaturelist:
+        if len(signature) >= minimum_length and not contains(signature, excl_chars):
+            for word in anagrams[signature]:
+                subwords.add(word)
+    for word in dictionarylist:  # Run through sorted language dictionary list
+        if word in subwords:
+            print(word)          # Print all subset words ...
+    sys.exit()                   # and end program *without* printing (full) anagrams
 
 # Quick searchable dictionary to compare signature index order:
 index = 0
