@@ -1,0 +1,152 @@
+./" Manpage for your_function
+.TH ANAGRAMS 1 "03 March 2024" "0.0"
+.
+.
+.
+.SH NAME
+anagrams.py \(en finds all words and word-combinations in a given language that form an anagram of the (combination of) word(s) given as argument(s).
+.
+.
+.
+.SH SYNOPSIS
+anagrams.py   [\fIoptions\fP]   [\fIword\v'+0.2v'\s-30\s+3\v'-0.2v'\fP   [ ... \fIword\v'+0.2v'\s-1n\s+1\v'-0.2v'\fP]]
+.
+.
+.
+.SH DESCRIPTION
+anagrams.py is a Python3 program that finds all words and \fIword-combinations\fP in a 
+given language that form an anagram of the (combination of) word(s) 
+\(en whether or not existing(!) \(en given as argument(s).
+.LP
+Following options can be set:
+.IP \(en 3
+language: only one at the time, default language is Dutch;
+.IP \(en 3
+minimum length of words in matching combination;
+.IP \(en 3
+maximum number of words in matching combination;
+.IP \(en 3
+characters to be excluded from match (in order to avoid dots, apostrophs etc.);
+.IP \(en 3
+a (quoted sequence of) word(s) that must be part of the matching combination (whether or not existing, length nor characters restricted);
+.LP
+or to have the program:
+.IP \(en 3
+permute the word order of all matching word combinations (default only 1 word order);
+.IP \(en 3
+instead of returning the anagrams,
+provide all the single `subset-words'.
+.LP
+The results are sent to standard output and can be piped to e.g. 'less'
+or other utilities and applications.
+.LP
+Perequisite is presence on the system of a word list in flat text format
+of at least one language.
+.LP
+In its present form,
+the program code references following language word lists: 
+.IP \(bu 3
+\fI/usr/share/dict/dutch\fP
+.IP \(bu 3
+\fI/usr/share/dict/american-english\fP
+.IP \(bu 3
+\fI/usr/share/dict/british-english\fP
+.IP \(bu 3
+\fI/usr/share/hunspell/de_DE_frami.dic\fP
+.IP \(bu 3
+\fI/usr/share/dict/french\fP
+.IP \(bu 3
+\fI/usr/share/dict/spanish\fP
+.IP \(bu 3
+\fI/usr/share/dict/italian\fP
+.LP
+If wished and as per system configuration,
+above paths and language default may be changed or removed and references to
+other word lists may be added,
+by modifying the program code accordingly.
+.
+.
+.
+.SH OPTIONS
+anagrams.py takes the following options:
+.IP "\fB-a\fP"
+Use American-English language dictionary.
+.IP "\fB-b\fP"
+British-English  language dictionary.
+.IP "\fB-d\fP"
+Use Dutch language dictionary.
+.IP "\fB-f\fP"
+Use French language dictionary.
+.IP "\fB-g\fP"
+Use German language dictionary.
+.IP "\fB-h\fP"
+Help (this output).
+.IP "\fB-i\fP"
+Use Italian language dictionary.
+.IP "\fB-s\fP"
+Use Spanish language dictionary.
+.IP "\fB-l \fIMINLENGTH\fP"
+Print anagram results with words of at least \fIMINLENGTH\fP only,
+being a positive integer representing the number of alphanumeric characters.
+If this option is not used, the minimum word length is 2.
+.IP "\fB-q \fIMAXQTY\fP"
+Print anagram results with maximally \fIMAXQTY\fP words only,
+being a positive integer.
+.IP "\fB-x \fICHARS\fP"
+Exclude words with any of these \fICHARS\fP.
+.IP "\fB-I \fIINCLWRDS\fP"
+Print anagram results including \fIINCLWRDS\fP only.
+This option overrides option \fB-S\fP.
+\fIINCLWRDS\fP is \fInot\fP restricted by options \fB-l\fP and \fB-x\fP.
+If \fIINCLWRDS\fP consists of more two or more words,
+these shall be enclosed by double quotes.
+.IP "\fB-P\fP"
+Permute word order per anagram if it contains 2 or more words.
+.IP "\fB-S\fP"
+Instead of anagrams, print all character subset words,
+of which all characters are in the given arguments word(s) as well.
+This option is overridden by option \fB-I\fP.
+.LP
+Only one of the language options can be used at the same time.
+If no language option is given, Dutch is the default language.
+All other options can be combined, unless otherwise stated.
+.LP
+For example, the command:
+.IP
+.nf
+\fC./anagrams.py -a -l5 word combination\fP
+.fi
+.LP
+gives following result:
+.IP
+.nf
+\fCActon Brown idiom 
+Acton brown idiom 
+canto Brown idiom 
+canto brown idiom 
+Brown Macon idiot 
+brown Macon idiot 
+Robin contd miaow 
+robin contd miaow 
+Rodin Twain combo 
+Rodin twain combo 
+baton crown idiom\fP
+.fi
+.
+.
+.
+.SH COMPATIBILITY
+Python3
+.
+.
+.SH BUGS
+No known bugs.
+.
+.
+.SH AUTHOR
+Written by Rob Toscani (rob_toscani@yahoo.com)
+.
+.
+.
+.SH REPORTING BUGS
+Please report any bugs to the author by e-mail or via https://github.com/jazzfan2/text2troff/issues
