@@ -302,16 +302,16 @@ for signature in anagrams:
         signaturelist.append(signature)
 
 # In case of option -S, print all single words with all (distinct) letters in word_args:
-if print_subsets and incl_words == "":      # Unless option -I has been used as well
+if print_subsets and incl_words == "":      # Unless option -I has been used as well !
     subwords = set()
     for signature in signaturelist:
         if len(signature) >= minimum_length and not contains(signature, excl_chars):
             for word in anagrams[signature]:
                 subwords.add(word)
-    for word in dictionarylist:  # Run through sorted language dictionary list
+    for word in dictionarylist:    # Run through sorted language dictionary list
         if word in subwords:
-            print(word)          # Print all subset words ...
-    sys.exit()                   # and end program *without* printing (full) anagrams
+            print(word)            # Print all subset words ...
+    sys.exit()                     # and end program *without* printing (full) anagrams
 
 # Quick searchable dictionary to compare signature index order:
 index = 0
