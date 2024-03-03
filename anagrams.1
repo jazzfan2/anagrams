@@ -16,7 +16,7 @@ anagrams.py  [\fIoptions\fP]  [\fIword\v'+0.2v'\s-31\s+3\v'-0.2v'\fP [ ... \fIwo
 .SH DESCRIPTION
 anagrams.py is a Python3 program that finds all words and \fIword-combinations\fP in a 
 given language that form an anagram of the (combination of) word(s) 
-\(en whether or not existing(!) \(en given as argument(s).
+\(en whether or not existing \(en given as argument(s).
 .LP
 Following options can be set:
 .IP \(en 3
@@ -32,7 +32,7 @@ a (quoted sequence of) word(s) that must be part of the matching combination (wh
 .LP
 or to have the program:
 .IP \(en 3
-permute the word order of all matching word combinations (default only 1 word order);
+permute the word order of all matching word combinations (default only one word order);
 .IP \(en 3
 instead of returning the anagrams,
 provide all the single `subset-words'.
@@ -88,20 +88,23 @@ Use Spanish language dictionary.
 .IP "\fB-l \fIMINLENGTH\fP"
 Print anagram results with words of at least \fIMINLENGTH\fP only,
 being a positive integer representing the number of alphanumeric characters.
-If this option is not used, the minimum word length is 2.
+If this option is not used, the minimum word length is two (2).
+This option does however not restrict any of the words given with option -I.
 .IP "\fB-q \fIMAXQTY\fP"
 Print anagram results with maximally \fIMAXQTY\fP words only,
 being a positive integer.
 .IP "\fB-x \fICHARS\fP"
 Exclude words with any of these \fICHARS\fP.
+This option does however not restrict any of the words given with option -I.
 .IP "\fB-I \fIINCLWRDS\fP"
-Print anagram results including \fIINCLWRDS\fP only.
+Print anagram results including \fIINCLWRDS\fP only,
+being a (combination of) word(s), either existing or non-existing.
 This option overrides option \fB-S\fP.
 \fIINCLWRDS\fP is \fInot\fP restricted by options \fB-l\fP and \fB-x\fP.
-If \fIINCLWRDS\fP consists of more two or more words,
-these shall be enclosed by double quotes.
+If \fIINCLWRDS\fP consists of two (2) or more words,
+the combination shall be enclosed by double quotes.
 .IP "\fB-P\fP"
-Permute word order per anagram if it contains 2 or more words.
+Permute word order per anagram if it contains two (2) or more words.
 .IP "\fB-S\fP"
 Instead of anagrams, print all character subset words,
 of which all characters are in the given arguments word(s) as well.
