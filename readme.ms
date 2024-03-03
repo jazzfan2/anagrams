@@ -16,13 +16,16 @@ word-\f[I]COMBINATIONS\f[R] in a given language that form an anagram of
 the (combination of) word(s) - whether or not existing(!) - given as
 argument(s).
 .PP
-anagrams.py offers options to chose: - language: only one at the time,
-default language is Dutch; - minimum length of words in matching
-combination; - maximum number of words in matching combination; -
-characters to be excluded from match (in order to avoid dots, apostrophs
-etc.); - a (quoted sequence of) word(s) that must be part of the
-matching combination (length nor characters restricted); - to permute
-word order of matching word combinations (default only 1 word order).
+Following options can be set: - language: only one at the time, default
+language is Dutch; - minimum length of words in matching combination; -
+maximum number of words in matching combination; - characters to be
+excluded from match (in order to avoid dots, apostrophs etc.); - a
+(quoted sequence of) word(s) that must be part of the matching
+combination (whether or not existing, length nor characters restricted);
+.PP
+or to have the program: - permute the word order of all matching word
+combinations (default only 1 word order); - instead of returning the
+anagrams, provide all the single \[lq]subset-words\[rq].
 .PP
 The results are sent to standard output and can be piped to e.g.\ `less'
 or other utilities and applications.
@@ -46,7 +49,7 @@ lists:
 .LP
 If no language option is given, Dutch is the default language.
 .PP
-If wished and as per system configuration, above paths and langauge
+If wished and as per system configuration, above paths and language
 default may be changed or removed and references to other word lists may
 be added, by modifying the program code accordingly.
 .SH 1
@@ -60,7 +63,7 @@ Usage:
 .IP
 .nf
 \f[C]
-anagrams.py [-abdfghislqxIP] WORD(1) [ ... WORD(n)]
+anagrams.py [-abdfghislqxIPS] WORD(1) [ ... WORD(n)]
 \f[]
 .fi
 .SH 2
@@ -82,7 +85,8 @@ Options:
 -q MAXQTY     Results with maximally MAXQTY words only
 -x CHARS      Exclude words with any of these CHARS
 -I INCLWRDS   Results including INCLWRDS (NOT restricted by options -l, -x) only
--P            Permute word order per anagram if it contains 2 or more words 
+-P            Permute word order per anagram if it contains 2 or more words
+-S            Instead of anagrams, print all character subset words (not with option -I) 
 \f[]
 .fi
 .LP

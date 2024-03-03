@@ -31,7 +31,7 @@ In its present form, the program code references following language word lists:
 
 If no language option is given, Dutch is the default language.
 
-If wished and as per system configuration, above paths and langauge default may be changed or removed and references to other word lists may be added, by modifying the program code accordingly.
+If wished and as per system configuration, above paths and language default may be changed or removed and references to other word lists may be added, by modifying the program code accordingly.
 
 # How to use anagrams.py
 
