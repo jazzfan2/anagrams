@@ -10,7 +10,7 @@ Following options can be set:
 - minimum length of words in matching combination;
 - maximum number of words in matching combination;
 - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
-- a (quoted sequence of) word(s) that must be part of the matching combination (length nor characters restricted);
+- a (quoted sequence of) word(s) that must be part of the matching combination (whether or not existing, length nor characters restricted);
 
 or to have the program:
 - permute the word order of all matching word combinations (default only 1 word order);
