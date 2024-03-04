@@ -17,7 +17,7 @@ argument(s).
 .PP
 anagrams.py offers the possibility to set various properties to
 manipulate and filter the results, such as: - the language in which the
-anagrams are to generated (default is Dutch); - the minimum length of
+anagrams are to be generated (default is Dutch); - the minimum length of
 words in the generated anagrams; - the maximum number of words per
 anagram; - any characters to be excluded from the anagrams; - any
 existing or non-existing (quoted sequence of) word(s) that must be part

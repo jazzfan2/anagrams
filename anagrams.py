@@ -2,21 +2,26 @@
 # Name  : anagrams.py
 # Author: R.J.Toscani
 # Date  : 26-02-2024
-# Description: Python3 program that finds all word-*COMBINATIONS* in a 
-# given language that form an anagram of the (combination of) word(s) - whether
-# or not existing(!) - given as argument(s).
-# It offers the following possibilities to manipulate and filter the results:
-# - language: only one at the time, default language is Dutch;
-# - minimum length of words in matching combination;
-# - maximum number of words in matching combination;
-# - characters to be excluded from match (in order to avoid dots, apostrophs etc.);
-# - a (quoted sequence of) word(s) that must be part of the matching combination;
+# Description: Python3 program that generates all words and *word-combinations*
+# in a given language that form an anagram of the (combination of) word(s) 
+# given as argument(s), whether or not existing.
+# anagrams.py offers the possibility to set various properties to manipulate
+# and filter the results, such as:
+# - the language in which the anagrams are to be generated (default is Dutch);
+# - the minimum length of words in the generated anagrams;
+# - the maximum number of words per anagram;
+# - any characters to be excluded from the anagrams;
+# - any existing or non-existing (quoted sequence of) word(s) that must be
+#   part of the anagram;
 # or to have the program:
-# - permute the word order of all matching word combinations (default only 1 word order);
-# - instead of returning the anagrams, provide all the single "subset-words".
+# - permute the word order of all generated multi-word anagrams (default 
+#   only 1 word order);
+# - instead of returning the anagrams, provide all the single "subset-words",
+#   that have all their alphanumeric characters in common with the argument
+#   word(s).
 #
-# Disclaimer: word combinations presented by this program as anagram solutions can't
-# be expected to be grammatically correct nor to make sense in general.
+# Disclaimer: word combinations presented by this program as anagram solutions
+# can't be expected to be grammatically correct nor to make sense in general.
 #
 # Use pypy3 for enhanced speed.
 #
