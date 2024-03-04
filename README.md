@@ -59,7 +59,8 @@ If wished and as per system configuration, above paths and language default may 
 
 Options can be combined but only one (1) language can be set at the time.
 
-One of more [WORD] arguments must be given, to which the program will present all matching combinations of words, given the option settings.
+One of more [WORD] arguments must be given,
+to which the program will present all matching anagrams given the option settings.
 
 For example, the command:
 

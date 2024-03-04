@@ -96,7 +96,7 @@ Options can be combined but only one (1) language can be set at the
 time.
 .PP
 One of more [WORD] arguments must be given, to which the program will
-present all matching combinations of words, given the option settings.
+present all matching anagrams given the option settings.
 .PP
 For example, the command:
 .IP
