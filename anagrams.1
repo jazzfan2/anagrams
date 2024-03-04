@@ -4,7 +4,7 @@
 .
 .
 .SH NAME
-anagrams.py \(en finds all words and word-combinations in a given language that form an anagram of the (combination of) word(s) given as argument(s).
+anagrams.py \(en generates all single- and multi-word anagrams for the (combination of) word(s) given as argument(s).
 .
 .
 .
@@ -14,28 +14,35 @@ anagrams.py  [\fIoptions\fP]  [\fIword\v'+0.2v'\s-31\s+3\v'-0.2v'\fP [ ... \fIwo
 .
 .
 .SH DESCRIPTION
-anagrams.py is a Python3 program that finds all words and \fIword-combinations\fP in a 
+anagrams.py is a Python3 program that generates all words and \fIword-combinations\fP in a 
 given language that form an anagram of the (combination of) word(s) 
 \(en whether or not existing \(en given as argument(s).
+The program acts case-insensitive.
+Accented characters are treated as equivalent to non-accented characters.
+Interpunction symbols such as dots, apostrophs and hyphens do not need to match
+in order to be part of an anagram.
 .LP
-It offers the following possibilities to manipulate and filter the results:
+anagrams.py offers the possibility to set various properties to manipulate and filter the results,
+such as:
 .IP \(en 3
-language: only one at the time, default language is Dutch;
+the language in which the anagrams are to generated (default is Dutch);
 .IP \(en 3
-minimum length of words in matching combination;
+the minimum length of words in the generated anagrams;
 .IP \(en 3
-maximum number of words in matching combination;
+the maximum number of words per anagram;
 .IP \(en 3
-characters to be excluded from match (in order to avoid dots, apostrophs etc.);
+any characters to be excluded from the anagrams,
+both alphanumeric characters and interpunction symbols;
 .IP \(en 3
-a (quoted sequence of) word(s) that must be part of the matching combination (whether or not existing, length nor characters restricted);
+any existing or non-existing (sequence of) word(s) that must be part of the anagram;
 .LP
-or to have the program:
+In addition, the program can optionally be made to:
 .IP \(en 3
-permute the word order of all matching word combinations (default only one word order);
+permute the word order of all generated multi-word anagrams (default is only one word order);
 .IP \(en 3
-instead of returning the anagrams,
-provide all the single `subset-words'.
+instead of returning anagrams,
+generate all the single `subset-words',
+that have all their alphanumeric characters in common with the argument word(s).
 .LP
 The results are sent to standard output and can be piped to e.g. 'less'
 or other utilities and applications.
@@ -102,8 +109,9 @@ the combination shall be enclosed by double quotes.
 .IP "\fB-P\fP"
 Permute word order per anagram if it contains two (2) or more words.
 .IP "\fB-S\fP"
-Instead of anagrams, print all character subset words,
-of which all characters are in the given arguments word(s) as well.
+Instead of anagrams, print all single 'subset' words,
+that have all their alphanumeric characters in common with the given arguments word(s),
+with or without accent and/or interpunction marks.
 This option is overridden by option \fB-I\fP.
 .LP
 Only one of the language options can be used at the same time.
