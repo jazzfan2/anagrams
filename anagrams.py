@@ -178,8 +178,6 @@ n_til = re.compile('[ñÑ]')
 c_ced = re.compile('[çÇ]')
 intpunct = re.compile('[\'\" :.&-]')
 slashtag = re.compile('\/[^/]*')
-spaces1 = re.compile('^ +')
-spaces2 = re.compile(' +')
 
 # Text printed if -h option (help) or a non-existing option has been given:
 usage = """
