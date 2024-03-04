@@ -17,7 +17,7 @@ the (combination of) word(s) - whether or not existing(!) - given as
 argument(s).
 .PP
 It offers the following possibilities to manipulate and filter the
-output: - language: only one at the time, default language is Dutch; -
+results: - language: only one at the time, default language is Dutch; -
 minimum length of words in matching combination; - maximum number of
 words in matching combination; - characters to be excluded from match
 (in order to avoid dots, apostrophs etc.); - a (quoted sequence of)

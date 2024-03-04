@@ -5,7 +5,7 @@
 # Description: Python3 program that finds all word-*COMBINATIONS* in a 
 # given language that form an anagram of the (combination of) word(s) - whether
 # or not existing(!) - given as argument(s).
-# It offers the following possibilities to manipulate and filter the output:
+# It offers the following possibilities to manipulate and filter the results:
 # - language: only one at the time, default language is Dutch;
 # - minimum length of words in matching combination;
 # - maximum number of words in matching combination;
