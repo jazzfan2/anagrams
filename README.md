@@ -1,20 +1,23 @@
 # Name: anagrams.py
-anagrams.py - a program that finds all word-*COMBINATIONS* in a given language that form an anagram of the (combination of) word(s) given as argument(s).
+anagrams.py - generates all single- and multi-word anagrams for the (combination of) word(s) given as argument(s).
 
 # Description:
-anagrams.py is a Python3 program that finds all word-*COMBINATIONS* in a 
-given language that form an anagram of the (combination of) word(s) - whether or not existing(!) - given as argument(s).
+anagrams.py is a Python3 program that generates all words and *word-combinations* in a 
+given language that form an anagram of the (combination of) word(s) 
+- whether or not existing - given as argument(s).
 
-It offers the following possibilities to manipulate and filter the results:
-- language: only one at the time, default language is Dutch;
-- minimum length of words in matching combination;
-- maximum number of words in matching combination;
-- characters to be excluded from match (in order to avoid dots, apostrophs etc.);
-- a (quoted sequence of) word(s) that must be part of the matching combination (whether or not existing, length nor characters restricted);
+anagrams.py offers the possibility to set various properties to manipulate and filter the results,
+such as:
+- the language in which the anagrams are to generated (default is Dutch);
+- the minimum length of words in the generated anagrams;
+- the maximum number of words per anagram;
+- any characters to be excluded from the anagrams;
+- any existing or non-existing (quoted sequence of) word(s) that must be part of the anagram;
 
-or to have the program:
-- permute the word order of all matching word combinations (default only 1 word order);
-- instead of returning the anagrams, provide all the single "subset-words".
+In addition, the program can optionally be made to:
+- permute the word order of all generated multi-word anagrams (default is only one word order);
+- instead of returning the anagrams, provide all the single "subset-words",
+that have all their alphanumeric characters in common with the argument word(s).
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
 
@@ -76,6 +79,8 @@ gives following result:
 	Rodin Twain combo 
 	Rodin twain combo 
 	baton crown idiom
+
+For a detailed desscription see the man page included in this repository.
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).
