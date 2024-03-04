@@ -98,11 +98,13 @@ Print anagram results with maximally \fIMAXQTY\fP words only,
 being a positive integer.
 .IP "\fB-x \fICHARS\fP"
 Exclude words with any of these \fICHARS\fP.
-This option does however not restrict any of the words given with option \fB-I\fP.
+This option does take character case, accent marks and interpunction literally,
+however doesn't restrict any of the words given with option \fB-I\fP.
 .IP "\fB-I \fIINCLWRDS\fP"
 Print anagram results including \fIINCLWRDS\fP only,
 being a (combination of) word(s), either existing or non-existing.
-This option overrides option \fB-S\fP.
+This option does take character case, accent marks and interpunction literally,
+and overrides option \fB-S\fP.
 \fIINCLWRDS\fP is \fInot\fP restricted by options \fB-l\fP and \fB-x\fP.
 If \fIINCLWRDS\fP consists of two (2) or more words,
 the combination shall be enclosed by double quotes.
