@@ -3,8 +3,7 @@ anagrams.py - generates all single- and multi-word anagrams for the (combination
 
 # Description:
 anagrams.py is a Python3 program that generates all words and *word-combinations* in a 
-given language that form an anagram of the (combination of) word(s) 
-- whether or not existing - given as argument(s).
+given language that form an anagram of the (combination of) word(s) - whether or not existing - given as argument(s).
 
 anagrams.py offers the possibility to set various properties to manipulate and filter the results,
 such as:
@@ -80,7 +79,7 @@ gives following result:
 	Rodin twain combo 
 	baton crown idiom
 
-For a detailed desscription see the man page included in this repository.
+For a detailed description see the man-page included in this repository.
 
 # Author:
 Written by Rob Toscani (rob_toscani@yahoo.com).

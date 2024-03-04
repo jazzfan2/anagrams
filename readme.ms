@@ -124,8 +124,7 @@ baton crown idiom
 \f[]
 .fi
 .LP
-For a detailed desscription see the man page included in this
-repository.
+For a detailed description see the man-page included in this repository.
 .SH 1
 Author:
 .pdfhref O 1 "Author:"
