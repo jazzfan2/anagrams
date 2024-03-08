@@ -149,9 +149,7 @@ def permutelist(list1, list2 = []):
 
 def printlist(lis):
     """Print one line of all words in list"""
-    for word in lis:
-        print(word, end=' ')
-    print()
+    print(' '.join(lis))
 
 
 # os.system('clear')
@@ -254,10 +252,7 @@ if len(non_option_args) == 0:
     sys.exit()  
 
 # Convert the non-option word arguments to a unique sorted character signature:
-word_args = ""
-for word in non_option_args:
-    word_args = word_args + word
-word_args = normalize(word_args)
+word_args = normalize(''.join(non_option_args))
 
 # In case of option -I, loop through all 'include'-words:
 incl_words_list = [ word for word in incl_words.split(' ') if word != '' ]
