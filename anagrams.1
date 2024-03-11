@@ -9,7 +9,7 @@ anagrams.py \(en generates all single- and multi-word anagrams for the (combinat
 .
 .
 .SH SYNOPSIS
-anagrams.py  [\fIoptions\fP]  [\fIword\v'+0.2v'\s-31\s+3\v'-0.2v'\fP [ ... \fIword\v'+0.2v'\s-1n\s+1\v'-0.2v'\fP]]
+anagrams.py  [\fIoptions\fP]  \fIword\v'+0.2v'\s-31\s+3\v'-0.2v'\fP [ ... \fIword\v'+0.2v'\s-1n\s+1\v'-0.2v'\fP]
 .
 .
 .
@@ -19,7 +19,7 @@ in a given language that form an anagram of the \(en existing or non-existing \(
 word argument(s) 
 \fIword\v'+0.2v'\s-31\s+3\v'-0.2v'\fP [ ... \fIword\v'+0.2v'\s-1n\s+1\v'-0.2v'\fP].
 The program acts case-insensitive.
-Accented characters are treated as equivalent to non-accented characters.
+Characters with accent marks are treated as equivalent to those without.
 Interpunction symbols such as dots, apostrophs and hyphens do not need to match
 in order to be part of an anagram.
 .LP
@@ -35,7 +35,7 @@ the maximum number of words per anagram;
 any characters to be excluded from the anagrams,
 both alphanumeric characters, accent marks and interpunction symbols;
 .IP \(en 3
-any existing or non-existing (sequence of) word(s) that must be part of the anagram;
+any existing or non-existing (sequence of) word(s) that must be part of the anagram.
 .LP
 In addition, the program can optionally be made to:
 .IP \(en 3
