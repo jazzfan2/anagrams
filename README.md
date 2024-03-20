@@ -20,7 +20,7 @@ that have all their alphanumeric characters in common with the argument word(s).
 
 The results are sent to standard output and can be piped to e.g. 'less' or other utilities and applications.
 
-Perequisite is presence on the system of a word list in flat text format of at least one language.
+Prerequisite is presence on the system of a word list in flat text format of at least one language.
 In its present form, the program code references following language word lists: 
 
 	/usr/share/dict/dutch
