@@ -83,4 +83,4 @@ gives following result:
 For a detailed description see the man-page included in this repository.
 
 # Author:
-Written by Rob Toscani (rob_toscani@yahoo.com).
+Written by Rob Toscani (rob_toscani@yahoo.com). 
