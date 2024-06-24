@@ -11,7 +11,7 @@
 # - the minimum length of words in the generated anagrams;
 # - the maximum number of words per anagram;
 # - any characters to be excluded from the anagrams;
-# - any existing or non-existing (quoted sequence of) word(s) that must be
+# - any existing or not-existing (quoted sequence of) word(s) that must be
 #   part of the anagram;
 # or to have the program:
 # - permute the word order of all generated multi-word anagrams (default 
