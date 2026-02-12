@@ -180,7 +180,7 @@ u_acc = re.compile('[úùüÚÙÜ]')
 n_til = re.compile('[ñÑ]')
 c_ced = re.compile('[çÇ]')
 intpunct = re.compile('[\'\" :.&-]')
-slashtag = re.compile('\/[^/]*')
+slashtag = re.compile('/[^/]*')
 
 # Text printed if -h option (help) or a non-existent option has been given:
 usage = """
